@@ -1,0 +1,127 @@
+// import { FcLike } from "react-icons/fc";
+
+import project1 from "../assets/project1.png";
+import project2 from "../assets/project2.png";
+import project3 from "../assets/project3.png";
+
+import direction1 from "../assets/direction1.png";
+
+import krill from "../assets/krill.png"
+import margarita from "../assets/margarita.png"
+
+export const NotificationData =[]
+
+export const ServiceData = [
+  {
+    title: "UI разработка",
+    price: 50000,
+    backgroundImage: project1,
+  },
+  {
+    title: "Разработка интернет магазина",
+    price: 5000,
+    backgroundImage: project2,
+  },
+  {
+    title: "Концепция сайта",
+    price: 50000,
+    backgroundImage: project3,
+  },
+  {
+    title: "UI разработка",
+    price: 50000,
+    backgroundImage: project1,
+  },
+  {
+    title: "Разработка интернет магазина",
+    price: 5000,
+    backgroundImage: project2,
+  },
+  {
+    title: "Концепция сайта",
+    price: 50000,
+    backgroundImage: project3,
+  },
+];
+
+export const DirectionData = [
+  {
+    img: direction1,
+    title: "Графический дизайн",
+  },
+  {
+    img: direction1,
+    title: "Приложение",
+  },
+  {
+    img: direction1,
+    title: "Логотипы",
+  },
+  {
+    img: direction1,
+    title: "Видеомонтаж",
+  },
+  {
+    img: direction1,
+    title: "Разработка",
+  },
+  {
+    img: direction1,
+    title: "Программное обеспечение",
+  },
+  {
+    img: direction1,
+    title: "Искусственный интеллект",
+  },
+  {
+    img: direction1,
+    title: "Безопасность",
+  },
+];
+
+
+export const Rezume1Data=[
+{
+    img:krill,
+    name:'Кирилл',
+    job:'UI/UX дизайнер'
+},
+{
+    img:krill,
+    name:'Кирилл',
+    job:'UI/UX дизайнер'
+},
+{
+    img:krill,
+    name:'Кирилл',
+    job:'UI/UX дизайнер'
+},
+{
+    img:krill,
+    name:'Кирилл',
+    job:'UI/UX дизайнер'
+}
+]
+
+export const Rezume2Data=[
+    {
+        img:margarita,
+        name:'Маргарита',
+        job:'Програмист'
+    },
+    {
+        img:margarita,
+        name:'Маргарита',
+        job:'Програмист'
+    },
+    {
+        img:margarita,
+        name:'Маргарита',
+        job:'Програмист'
+    },
+    {
+        img:margarita,
+        name:'Маргарита',
+        job:'Програмист'
+    },
+]

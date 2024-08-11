@@ -1,0 +1,86 @@
+/* Custom scrollbar styles */
+.scrollbar-thin::-webkit-scrollbar {
+    width: 6px ;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: #333333; /* Tailwind color: bg-gray-800 */
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: gray; /* Tailwind color: bg-gray-600 */
+    border-radius: 10px;
+    border: 2px solid #333333; /* Tailwind color: bg-gray-800 */
+  }
+  
+  .scrollbar-rezume-thin::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+  .scrollbar-rezume-thin::-webkit-scrollbar-track {
+    background: #333333; /* Tailwind color: bg-gray-800 */
+  }
+  
+  .scrollbar-rezume-thin::-webkit-scrollbar-thumb {
+    background-color: gray; /* Tailwind color: bg-gray-600 */
+    border-radius: 10px;
+    border: 2px solid #333333; /* Tailwind color: bg-gray-800 */
+  }
+
+  /* Custom scrollbar styles */
+.scrollbar-x-thin::-webkit-scrollbar {
+  height: 4px;
+}
+
+.scrollbar-x-thin::-webkit-scrollbar-track {
+  background: #333333; /* Tailwind color: bg-gray-800 */
+}
+
+.scrollbar-x-thin::-webkit-scrollbar-thumb {
+  background-color: gray; /* Tailwind color: bg-gray-600 */
+  border-radius: 10px;
+  border: 2px solid #333333; /* Tailwind color: bg-gray-800 */
+}
+
+
+
+.hidden-component{
+  display: none;
+}
+
+.show-component{
+  display: block;
+}
+
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-pagination-bullet-active {
+  background: white !important;
+}
+
+.swiper-pagination-bullet {
+  background: red !important;
+  opacity: 1;
+}
+
+.apexcharts-menu {
+background-color: black !important;
+}
+
+
