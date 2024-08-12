@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <div className="w-full max-w-[1196px] flex flex-col-reverse items-center  justify-between md:flex-row  mt-[200px] pb-12">
+    <div className="w-full max-w-[1196px] flex flex-col-reverse items-center  justify-between md:flex-row  md:mt-[200px] mt-10 pb-12">
        <div className="w-1/2 flex justify-between items-center">
        <div>
           <ul className="flex flex-col gap-2 p-5 text-[clamp(8px,3vw,14px)]">
@@ -44,7 +44,7 @@ export default function Footer() {
           </li>
           <li className="flex gap-6 mt-[12px]">
             <BiLogoTelegram size={30} color="white" />
-            <SlSocialVkontakte size={30} color="white" />
+            <SlSocialVkontakte size={30} color="white" style={{ fill: "white" }} />
             <PiInstagramLogoFill size={30} color="white" />
           </li>
         </ul>

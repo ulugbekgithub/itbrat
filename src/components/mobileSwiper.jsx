@@ -1,5 +1,4 @@
-import React from "react";
-
+import { useState } from "react";
 import SwiperCore from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, EffectCoverflow } from "swiper/modules";
@@ -10,17 +9,32 @@ import { v4 as uuidv4 } from "uuid";
 SwiperCore.use([Navigation]);
 
 const MobileSwiper = () => {
-  const swiperRef = React.useRef(null);
+  const [swiperInstance, setSwiperInstance] = useState(null);
+  const [isPrevDisabled, setIsPrevDisabled] = useState(true);
+  const [isNextDisabled, setIsNextDisabled] = useState(false);
+
+  const handleSwiper = (swiper) => {
+    setSwiperInstance(swiper);
+    updateButtonStates(swiper);
+  };
+
+  const updateButtonStates = (swiper) => {
+    if (!swiper) return;
+    setIsPrevDisabled(swiper.isBeginning);
+    setIsNextDisabled(swiper.isEnd);
+  };
 
   const goNext = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext();
+    if (swiperInstance && !swiperInstance.isEnd) {
+      swiperInstance.slideNext();
+      updateButtonStates(swiperInstance);
     }
   };
 
   const goPrev = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev();
+    if (swiperInstance && !swiperInstance.isBeginning) {
+      swiperInstance.slidePrev();
+      updateButtonStates(swiperInstance);
     }
   };
 
@@ -31,20 +45,20 @@ const MobileSwiper = () => {
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
-          slidesPerView={1.5} // Markaziy slaydga e'tibor qaratish
-          initialSlide={1} // Dastlabki ko'rinishda ikkinchi slaydni markaziy joylashtirish
+          slidesPerView={1.5} // Center slide focus
+          initialSlide={1} // Start with the second slide centered
           coverflowEffect={{
-            rotate: 0, // Slayderni aylantirishni o'chirish
-            stretch: 100, // Slaydlar orasidagi bo'shliqni kengaytirish
-            depth: 200, // Slaydlar chuqurlikda joylashadi
-            modifier: 1, // Effekt kuchini sozlash
-            slideShadows: false, // Slayder orqasida soya bo'lishi mumkin
+            rotate: 0,
+            stretch: 100,
+            depth: 200,
+            modifier: 1,
+            slideShadows: false,
           }}
           navigation={{
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
           }}
-          ref={swiperRef}
+          onSwiper={handleSwiper}
           breakpoints={{
             340: {
               slidesPerView: 1.5,
@@ -70,7 +84,7 @@ const MobileSwiper = () => {
                   className="absolute inset-0 bg-cover bg-center bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10"
                   style={{
                     backgroundImage: `url(${item.backgroundImage})`,
-                    filter: index !== 1 ? "blur(2px) grayscale(80%)" : "none", // Orqa fonni xiralashtirish va qora-oq rangda qilish
+                    filter: index !== 1 ? "blur(2px) grayscale(80%)" : "none", 
                   }}
                 />
                 <div className="absolute" />
@@ -93,16 +107,18 @@ const MobileSwiper = () => {
 
         <div className="flex gap-5">
           <button
-            className="w-[53px] h-[53px] bg-main-red rounded-full flex justify-center items-center"
+            className={`w-[53px] h-[53px] ${isPrevDisabled ? 'bg-red-900' : 'bg-main-red'} rounded-full flex justify-center items-center`}
             onClick={goPrev}
+            disabled={isPrevDisabled}
           >
-            <GrLinkPrevious color="black" size={40} />
+            <GrLinkPrevious color={isPrevDisabled ? "black" : "black"} size={40} />
           </button>
           <button
-            className="w-[53px] h-[53px] bg-main-red rounded-full flex justify-center items-center"
+            className={`w-[53px] h-[53px] ${isNextDisabled ? 'bg-red-900' : 'bg-main-red'} rounded-full flex justify-center items-center`}
             onClick={goNext}
+            disabled={isNextDisabled}
           >
-            <GrLinkNext color="black" size={40} />
+            <GrLinkNext color={isNextDisabled ? "black" : "black"} size={40} />
           </button>
         </div>
       </div>

@@ -114,16 +114,16 @@ export default function FirstLanding() {
           <span className="text-main-red"> МЕЧТЫ</span> ЗДЕСЬ
         </h2>
         <div className="w-full max-w-[1196px] flex flex-col items-center justify-center md:p-5 p-5">
-          <div className=" w-full flex flex-col-reverse md:flex-row md:p-5">
+          <div className="flex flex-col-reverse md:flex-row md:p-5">
             <div className="flex items-end">
               <img
-                className="w-full h-full object-contain"
+                className="md:w-full md:h-full h-[400px]  object-cover object-left "
                 src={commandMan}
                 alt="commandMan"
               />
             </div>
             <div>
-              <div className="flex flex-col items-center ">
+              <div className="flex flex-col items-center">
                 <div className="flex gap-[35px]">
                   <div className="w-full max-w-[188px] p-5 box-shadow">
                     <span className="text-main-red text-[clamp(24px,3vw,48px)] font-extrabold">
@@ -133,7 +133,7 @@ export default function FirstLanding() {
                       соискателей
                     </p>
                   </div>
-                  <div className="w-full max-w-[295px] p-5 box-shadow">
+                  <div className="w-full max-w-[295px] min-h-[124px] p-5 box-shadow">
                     <span className="text-main-red text-[clamp(24px,3vw,48px)] font-extrabold">
                       300+
                     </span>
@@ -251,11 +251,11 @@ export default function FirstLanding() {
                   </div>
                 </div>
 
-                <div className="relative w-full max-w-[491px] min-h-[600px] flex flex-col justify-between items-center pt-5 text-center text-main-white itbrat-box hover:bg-main-white hover:text-main-black hover:cursor-pointer">
+                <div className="relative w-full max-w-[491px] min-h-[600px] flex flex-col justify-between items-center pt-5 text-center text-main-white itbrat-box hover:bg-main-white hover:text-main-black hover:cursor-pointer group">
                   <span className="text-3xl font-semibold">
                     Для фрилансеров
                   </span>
-                  <ul className="absolute left-48 top-32 w-full flex flex-col whitespace-nowrap gap-3 px-12 opacity-0 invisible transition-opacity duration-300 ease-in-out hover-ul">
+                  <ul className="absolute lg:left-48 left-24 top-32 w-full flex flex-col whitespace-nowrap gap-3 px-12 opacity-0 invisible transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:visible">
                     <li className="flex gap-2">
                       <FaCheck size={20} color="red" />
                       <span className="text-[16px] font-light text-start">
@@ -335,9 +335,12 @@ export default function FirstLanding() {
           </button>
 
           <div className="w-full py-20 flex flex-col md:flex-row justify-between items-center">
-            <div className="w-[80%]">
-              <h1 className="w-full flex justify-center gap-2 text-main-white text-[clamp(24px,3vw,48px)] font-bold">
-                ЛУЧШИЕ <span className="text-main-red">РЕЗЮМЕ</span>
+            <div className="w-full">
+              <h1 className="w-full flex justify-center gap-2 text-main-white text-[clamp(24px,3vw,72px)] font-bold">
+                ЛУЧШИЕ{" "}
+                <span className="text-main-red text-[clamp(24px,3vw,72px)]">
+                  РЕЗЮМЕ
+                </span>
               </h1>
             </div>
             <div className="md:block hidden">
