@@ -5,6 +5,8 @@ import { FreeMode, Navigation, EffectCoverflow } from "swiper/modules";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { ServiceData } from "../constants";
 import { v4 as uuidv4 } from "uuid";
+import { FaEye } from "react-icons/fa";
+import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 
 SwiperCore.use([Navigation]);
 
@@ -89,6 +91,33 @@ const MobileSwiper = () => {
                 />
                 <div className="absolute" />
                 <div className="relative flex flex-col gap-10">
+                <div className="absolute top-[-90px] right-[0px] flex items-center gap-4">
+                <div>
+                <button className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
+                  <FaEye size={15} className=" cursor-pointer hover:scale-110"/>
+                  </button>
+                  <span className="text-second-color text-[13px]">{item.view}к</span>
+                </div>
+                <div>
+                <button className=" flex items-center justify-center w-8 h-8 rounded-full bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
+                  
+                  {item.favorite ? (
+                    <IoMdHeart
+                      className=" cursor-pointer hover:scale-110"
+                      color="red"
+                      size={15}
+                    />
+                  ) : (
+                    <IoMdHeartEmpty
+                      className="cursor-pointer hover:scale-110"
+                      color="white"
+                      size={15}
+                    />
+                  )}
+                </button>
+                <span className="text-second-color text-[13px]">{item.likes}</span>
+                </div>
+                </div>
                   <h1 className="text-[16px] font-semibold text-start">
                     {item.title}
                   </h1>

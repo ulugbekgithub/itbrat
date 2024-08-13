@@ -14,6 +14,7 @@ import NotFound from "./pages/notFound/notFound";
 import FavoriteProject from "./components/favoriteProject";
 import RoleSelection from "./pages/roll/roleSelection";
 import Settings from "./components/settings";
+import ChatWindow from "./pages/chats/chatWindow";
 
 function App() {
   return (
@@ -32,7 +33,9 @@ function App() {
           <Route path="/profile/settings" element={<Settings />} />
           <Route path="/profile/projects" element={<Projects />} />
           <Route path="/profile/resume" element={<Rezume />} />
-          <Route path="/profile/chat" element={<Chat />} />
+          <Route path="/profile/chat" element={<Chat />}>
+            <Route path="/profile/chat/:id" element={<ChatWindow />} />
+          </Route>
           <Route path="/profile/search" element={<Search />} />
           <Route path="/profile/accaunt" element={<Account />} />
           <Route path="/profile/notification" element={<Notification />} />

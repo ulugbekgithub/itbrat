@@ -16,31 +16,49 @@ export const ServiceData = [
     title: "UI разработка",
     price: 50000,
     backgroundImage: project1,
+    view:1.8,
+    likes:50,
+    favorite:true
   },
   {
     title: "Разработка интернет магазина",
     price: 5000,
     backgroundImage: project2,
+    view:20,
+    likes:217,
+    favorite:false
   },
   {
     title: "Концепция сайта",
     price: 50000,
     backgroundImage: project3,
+    view:3.2,
+    likes:120,
+    favorite:false
   },
   {
     title: "UI разработка",
     price: 50000,
     backgroundImage: project1,
+    view:1.8,
+    likes:50,
+    favorite:true
   },
   {
     title: "Разработка интернет магазина",
     price: 5000,
     backgroundImage: project2,
+    view:20,
+    likes:217,
+    favorite:false
   },
   {
     title: "Концепция сайта",
     price: 50000,
     backgroundImage: project3,
+    view:3.2,
+    likes:120,
+    favorite:false
   },
 ];
 

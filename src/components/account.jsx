@@ -27,21 +27,13 @@ export default function Account() {
 
   useEffect(() => {
     dispatch(getCurrentUser());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getHeadingResume());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getCurrentUserResume());
   }, [dispatch]);
 
-  console.log(currentResume);
 
   const handleEditClick = () => {
     if (currentResume && currentResume.length > 0) {
-      console.log(currentResume[0].heading);
 
       reset({
         contact: currentResume[0].contact,
@@ -57,6 +49,7 @@ export default function Account() {
   
   const handleOpenForm = () => {
     setEditClick(true);
+    reset();
   };
 
   const closeForm = () => {

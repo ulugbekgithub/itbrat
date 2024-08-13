@@ -9,6 +9,7 @@ const initialState = {
   allResume: [],
   currentResume: [],
   clickLike: false,
+  selectedResume: [],
 };
 
 export const resumePostLike = createAsyncThunk(
@@ -151,6 +152,22 @@ export const deleteResume = createAsyncThunk(
   }
 );
 
+export const getResumeById = createAsyncThunk(
+  "resume/getResumeById",
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.get(`${baseURL}/resume/${id}/`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const resumeSlice = createSlice({
   name: "resume",
   initialState,
@@ -241,6 +258,16 @@ const resumeSlice = createSlice({
       );
     });
     builder.addCase(deleteResume.rejected, (state) => {
+      state.status = "rejected";
+    });
+    builder.addCase(getResumeById.pending, (state) => {
+      state.status = "pending";
+    });
+    builder.addCase(getResumeById.fulfilled, (state, action) => {
+      state.status = "success";
+      state.selectedResume = action.payload;
+    });
+    builder.addCase(getResumeById.rejected, (state) => {
       state.status = "rejected";
     });
   },

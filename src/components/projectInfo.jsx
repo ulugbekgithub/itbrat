@@ -1,10 +1,54 @@
+import axios from "axios";
 import { useSelector } from "react-redux";
+import { baseURL } from "../app/api/baseUrl";
+import { FaTelegramPlane } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectInfo() {
   const { projectInfo } = useSelector((state) => state.projects);
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("accessToken");
+
+  const createWebSocket = (id, dataToSend) => {
+    const socket = new WebSocket(
+      `wss://api.itbratrf.ru/ws/chat/${id}/?token=${token}`
+    );
+    socket.onopen = () => socket.send(JSON.stringify(dataToSend));
+    socket.onmessage = (event) => console.log("Received message:", event.data);
+    socket.onerror = (error) => console.error("WebSocket error:", error);
+    socket.onclose = () => console.log("WebSocket closed");
+  };
+
+  // let chatId;
+  const handleCreateChat = async () => {
+    try {
+      const { data } = await axios.post(
+        `${baseURL}/chat/create_room/`,
+        { email: projectInfo.owner.email },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      
+      
+      createWebSocket(data?.id, { message: "Valekum", info: projectInfo });
+    } catch (error) {
+      const id = error.response?.data?.id;
+      if (id) {
+        createWebSocket(id, { message: "Valekum", info: projectInfo });
+      }
+    }
+    navigate(`/profile/chat`);
+  };
 
   return (
     <div className="w-full min-h-screen bg-[#1E1E1E] rounded-lg mt-2 p-3">
+      <button
+        onClick={handleCreateChat}
+        className="bg-red-700 text-main-white font-bold px-10 py-2 rounded-md flex items-center gap-2"
+      >
+        Chat
+        <FaTelegramPlane color="white" />
+      </button>
       <div className="w-full flex xl:flex-row flex-col">
         <div className="w-1/2">
           <h3 className="text-main-white text-[clamp(16px,3vw,24px)] font-bold mb-4">
