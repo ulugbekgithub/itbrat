@@ -236,7 +236,7 @@ export default function Account() {
                 <div className="flex items-start gap-3">
                   <div className="flex items-center justify-center w-[100px] h-[100px] border-4 border-[#680202] rounded-full">
                     <img
-                      className="w-[90px] h-[90px] rounded-full"
+                      className="w-[90px] h-[90px] rounded-full object-cover"
                       src={currentResume[0]?.image}
                       alt="profile"
                     />

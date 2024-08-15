@@ -30,14 +30,17 @@ export default function ProjectInfo() {
       );
       
       
-      createWebSocket(data?.id, { message: "Valekum", info: projectInfo });
+      createWebSocket(data?.id, { message: "", info: projectInfo });
+      navigate(`/profile/chat/${data?.id}`);
+
     } catch (error) {
       const id = error.response?.data?.id;
       if (id) {
-        createWebSocket(id, { message: "Valekum", info: projectInfo });
+        createWebSocket(id, { message: "", info: projectInfo });
+        navigate(`/profile/chat/${id}`);
       }
     }
-    navigate(`/profile/chat`);
+    
   };
 
   return (

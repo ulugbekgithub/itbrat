@@ -21,10 +21,9 @@ export default function Sidebar() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
 
   useEffect(() => {
-   dispatch(getCurrentUser());
+    dispatch(getCurrentUser());
   }, [dispatch]);
 
   const logOutProfile = () => {
@@ -45,11 +44,20 @@ export default function Sidebar() {
           </div>
           <ul className="flex flex-col py-4 px-10">
             <li className="">
-              
               {currentUser?.groups?.map((item) => (
                 <div className="px-5" key={item.id}>
-                  {item.id === 2 && <div className="flex items-center gap-3"><div className="w-3 h-3 bg-green-700 rounded-full"></div> <span className="text-green-700">Работадатель</span></div>}
-                  {item.id === 3 && <div className="flex items-center gap-3"><div className="w-3 h-3 bg-red-700 rounded-full"></div> <span className="text-red-700">Соискатель</span></div>}
+                  {item.id === 2 && (
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 bg-green-700 rounded-full"></div>{" "}
+                      <span className="text-green-700">Работадатель</span>
+                    </div>
+                  )}
+                  {item.id === 3 && (
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 bg-red-700 rounded-full"></div>{" "}
+                      <span className="text-red-700">Соискатель</span>
+                    </div>
+                  )}
                 </div>
               ))}
             </li>
@@ -77,7 +85,7 @@ export default function Sidebar() {
                       Проекты
                     </span>
                   </Link>
-                  <Link to={"/profile/resume"}>
+                  <Link to={"/profile/favorite-resume"}>
                     <span className="text-sm font-medium text-second-color hover:text-main-red">
                       Резюме
                     </span>
@@ -85,47 +93,63 @@ export default function Sidebar() {
                 </div>
               </div>
             </li>
-            <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer">
-              <Link to={"/profile/search"}>
+            <Link to={"/profile/search"}>
+              <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer">
                 <span className="inline-flex items-center justify-center h-12 w-12 text-lg">
                   <IoSearch />
                 </span>
                 <span className="text-sm font-medium">Поиск</span>
-              </Link>
-            </li>
-            <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer">
-              <Link to={"/profile/projects"}>
-                <span className="inline-flex items-center justify-center h-12 w-12 text-lg">
-                  <TiDocumentText />
-                </span>
-                <span className="text-sm font-medium">Проекты</span>
-              </Link>
-            </li>
-            <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer">
-              <Link to={"/profile/accaunt"}>
+              </li>
+            </Link>
+
+            {currentUser?.groups?.map((item) => (
+              <li
+                key={item.id}
+                className={`${
+                  item.id === 3 ? "hidden" : "flex"
+                }  flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer`}
+              >
+                <Link to={"/profile/projects"}>
+                  <span className="inline-flex items-center justify-center h-12 w-12 text-lg">
+                    <TiDocumentText />
+                  </span>
+                  <span className="text-sm font-medium">Проекты</span>
+                </Link>
+              </li>
+            ))}
+            <Link to={"/profile/accaunt"}>
+              <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer">
                 <span className="inline-flex items-center justify-center h-12 w-12 text-lg">
                   <CgProfile />
                 </span>
 
                 <span className="text-sm font-medium">Профиль</span>
-              </Link>
-            </li>
-            <Link to={"/profile/resume"}>
-              <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer">
-                <span className="inline-flex items-center justify-center h-12 w-12 text-lg">
-                  <IoDocumentTextOutline />
-                </span>
-                <span className="text-sm font-medium">Резюме</span>
               </li>
             </Link>
-            <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer">
-              <Link to={"/profile/chat"}>
+
+            {currentUser?.groups?.map((item) => (
+              <Link key={item.id} to={"/profile/resume"}>
+                <li
+                  className={`${
+                    item.id === 3 ? "hidden" : "flex"
+                  }  flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer`}
+                >
+                  <span className="inline-flex items-center justify-center h-12 w-12 text-lg">
+                    <IoDocumentTextOutline />
+                  </span>
+                  <span className="text-sm font-medium">Резюме</span>
+                </li>
+              </Link>
+            ))}
+
+            <Link to={"/profile/chat"}>
+              <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer">
                 <span className="inline-flex items-center justify-center h-12 w-12 text-lg">
                   <BsChatLeftDots />
                 </span>
                 <span className="text-sm font-medium">Чат</span>
-              </Link>
-            </li>
+              </li>
+            </Link>
           </ul>
 
           <div className="px-12 py-20">

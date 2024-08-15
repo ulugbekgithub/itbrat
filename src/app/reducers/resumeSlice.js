@@ -10,6 +10,7 @@ const initialState = {
   currentResume: [],
   clickLike: false,
   selectedResume: [],
+  setFavoriteResume: [],
 };
 
 export const resumePostLike = createAsyncThunk(
@@ -168,6 +169,62 @@ export const getResumeById = createAsyncThunk(
   }
 );
 
+export const searchAllResume = createAsyncThunk("resume/search", async (name, thunkAPI) => {
+  try {
+    const response =await axios.get(`${baseURL}/resume/?resume_owner=${name}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
+    console.log(response.data);
+    
+    return response.data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error)
+  }
+})
+
+export const searchWithFavoriteResume = createAsyncThunk(
+  "resume/favoritesearch",
+  async (name, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `${baseURL}/favorite/resume/?resume_owner=${name}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+      console.log(response.data);
+
+      return response.data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const getFavoriteResume = createAsyncThunk(
+  "resume/getFavoriteResume",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(`${baseURL}/favorite/resume/`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      console.log(response.data);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const resumeSlice = createSlice({
   name: "resume",
   initialState,
@@ -200,6 +257,36 @@ const resumeSlice = createSlice({
       state.allResume = action.payload;
     });
     builder.addCase(getAllResume.rejected, (state) => {
+      state.status = "rejected";
+    });
+    builder.addCase(getFavoriteResume.pending, (state) => {
+      state.status = "pending";
+    });
+    builder.addCase(getFavoriteResume.fulfilled, (state, action) => {
+      state.status = "success";
+      state.setFavoriteResume = action.payload;
+    });
+    builder.addCase(getFavoriteResume.rejected, (state) => {
+      state.status = "rejected";
+    });
+    builder.addCase(searchWithFavoriteResume.pending, (state) => {
+      state.status = "pending";
+    });
+    builder.addCase(searchWithFavoriteResume.fulfilled, (state, action) => {
+      state.status = "success";
+      state.setFavoriteResume = action.payload;
+    });
+    builder.addCase(searchWithFavoriteResume.rejected, (state) => {
+      state.status = "rejected";
+    });
+    builder.addCase(searchAllResume.pending, (state) => {
+      state.status = "pending";
+    });
+    builder.addCase(searchAllResume.fulfilled, (state, action) => {
+      state.status = "success";
+      state.allResume = action.payload;
+    });
+    builder.addCase(searchAllResume.rejected, (state) => {
       state.status = "rejected";
     });
     builder.addCase(getCurrentUserResume.pending, (state) => {

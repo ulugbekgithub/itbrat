@@ -89,7 +89,7 @@ const ChatWindow = () => {
               {memberDetail?.receiver?.first_name}{" "}
               {memberDetail?.receiver?.last_name}
             </h2>
-            <span className="text-sm text-gray-400">Online</span>
+            {/* <span className="text-sm text-gray-400">Online</span> */}
           </div>
         </div>
         <div className="ml-auto flex items-center space-x-2">
@@ -125,7 +125,7 @@ const ChatWindow = () => {
               />
             </svg>
           </button>
-          <button className="p-2 rounded bg-gray-800 hover:bg-gray-700">
+          {/* <button className="p-2 rounded bg-gray-800 hover:bg-gray-700">
             <svg
               width="30"
               height="30"
@@ -138,7 +138,7 @@ const ChatWindow = () => {
                 fill="#A3A3A3"
               />
             </svg>
-          </button>
+          </button> */}
           
         </div>
       </div>

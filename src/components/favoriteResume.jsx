@@ -3,33 +3,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { GrLinkNext, GrFormPreviousLink } from "react-icons/gr";
 import { useEffect, useState } from "react";
 import {
-  getAllResume,
+  getFavoriteResume,
   getResumeById,
   resumeDeleteLike,
-  resumePostLike,
-  searchAllResume,
+  searchWithFavoriteResume,
 } from "../app/reducers/resumeSlice";
-import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
+import { IoMdHeart } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
 
-export default function Rezume() {
+export default function FavoriteResume() {
   const dispatch = useDispatch();
-  const { allResume, selectedResume } = useSelector((state) => state.resumes);
+  const { setFavoriteResume, selectedResume } = useSelector(
+    (state) => state.resumes
+  );
   const [statuslike, setStatuslike] = useState(false);
   const [isSelectedResume, setIsSelectedResume] = useState(false);
   const hard_skills = selectedResume?.hard_skills?.[0];
   const text = hard_skills ? hard_skills.split(",") : [];
 
-  
-
   useEffect(() => {
-    dispatch(getAllResume());
+    dispatch(getFavoriteResume());
   }, [statuslike]);
-
-  const handleLikeClick = async (id) => {
-    await dispatch(resumePostLike(id));
-    setStatuslike(!statuslike);
-  };
 
   const handleDeleteLike = async (id) => {
     await dispatch(resumeDeleteLike(id));
@@ -45,19 +39,8 @@ export default function Rezume() {
   return (
     <div className="px-5">
       <div className="">
-        <div className="p-1 relative">
-          <IoSearch color="white" className="absolute top-12 left-12" />
-          <input
-            className="w-[85%] m-8 p-2 px-10 rounded-xl bg-[#101010] text-main-white"
-            type="text"
-            placeholder="Поиск"
-            onChange={(e) => dispatch(searchAllResume(e.target.value))}
-          />
-        </div>
-        <h1 className="text-main-white text-3xl font-semibold">Резюме</h1>
-
         {isSelectedResume ? (
-          <div className="w-full relative min-h-[233px] bg-[#8D8D8D] rounded-lg p-5">
+          <div className=" w-full relative min-h-[233px] bg-[#8D8D8D] rounded-lg p-5">
             <GrFormPreviousLink
               onClick={() => setIsSelectedResume(false)}
               className="absolute top-0 left-0 hover:text-main-red hover:scale-110 cursor-pointer"
@@ -141,49 +124,55 @@ export default function Rezume() {
             )}
           </div>
         ) : (
-          <div className="w-full h-full grid lg:grid-cols-2 grid-cols-1 gap-5 py-3">
-            {allResume.results?.map((item) => (
-              <div key={item.id} className="w-full h-full relative">
-                <div
-                  className="flex items-end bg-cover bg-center w-[100%] h-[435px] rounded-xl"
-                  style={{
-                    backgroundImage: `url(${item.image})`,
-                  }}
-                >
-                  <button className="absolute top-4 right-[20px] flex items-center justify-center w-10 h-10 rounded-full bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
-                    {item.favorite ? (
+          <div>
+            <div className="p-1 relative">
+              <IoSearch color="white" className="absolute top-12 left-12" />
+              <input
+                className="w-[85%] m-8 p-2 px-10 rounded-xl bg-[#101010] text-main-white"
+                type="text"
+                placeholder="Поиск"
+                onChange={(e) =>
+                  dispatch(searchWithFavoriteResume(e.target.value))
+                }
+              />
+            </div>
+            <div className="w-full h-full grid lg:grid-cols-2 grid-cols-1 gap-5 py-3">
+              {setFavoriteResume.results?.map((item) => (
+                <div key={item.id} className="w-full h-full relative">
+                  <div
+                    className="flex items-end bg-cover bg-center w-[100%] h-[435px] rounded-xl"
+                    style={{
+                      backgroundImage: `url(${item.resume.image})`,
+                    }}
+                  >
+                    <button className="absolute top-4 right-[20px] flex items-center justify-center w-10 h-10 rounded-full bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
                       <IoMdHeart
                         onClick={() => handleDeleteLike(item.id)}
                         className=" cursor-pointer hover:scale-110"
                         color="red"
                         size={30}
                       />
-                    ) : (
-                      <IoMdHeartEmpty
-                        onClick={() => handleLikeClick(item.id)}
-                        className="cursor-pointer hover:scale-110"
+                    </button>
+                    <div className=" h-[50px] w-full bg-gray-500 bg-clip-padding backdrop-filter  backdrop-blur bg-opacity-20 backdrop-saturate-50 backdrop-contrast-100 flex justify-between items-center p-7">
+                      <div>
+                        <h5 className="text-main-white">
+                          {item.resume.owner.first_name}
+                        </h5>
+                        <p className="text-second-color">
+                          {item.resume.heading.name}
+                        </p>
+                      </div>
+                      <GrLinkNext
+                        onClick={() => handleGetResume(item.id)}
+                        className="transform hover:translate-x-2 transition-transform ease-in duration-200 cursor-pointer"
+                        size={40}
                         color="white"
-                        size={30}
                       />
-                    )}
-                  </button>
-                  <div className=" h-[45px] w-full bg-gray-500 bg-clip-padding backdrop-filter  backdrop-blur bg-opacity-20 backdrop-saturate-50 backdrop-contrast-100 flex justify-between items-center p-6">
-                    <div>
-                      <h5 className="text-main-white">
-                        {item.owner.first_name}
-                      </h5>
-                      <p className="text-second-color">{item.heading.name}</p>
                     </div>
-                    <GrLinkNext
-                      onClick={() => handleGetResume(item.id)}
-                      className="transform hover:translate-x-2 transition-transform ease-in duration-200 cursor-pointer"
-                      size={40}
-                      color="white"
-                    />
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
       </div>

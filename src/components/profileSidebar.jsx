@@ -47,7 +47,7 @@ export default function ProfileSidebar() {
           <ul className="flex flex-col py-6 px-12">
             <li>
               <div className="flex items-center justify-center w-[80px] h-[80px] rounded-full border-2 border-main-red mx-auto cursor-pointer">
-                <img className="w-[90%] h-[90%] rounded-full" src={currentResume[0]?.image} alt="" />
+                <img className="w-[90%] h-[90%] rounded-full object-cover" src={currentResume[0]?.image} alt="" />
               </div>
             </li>
             <li>
