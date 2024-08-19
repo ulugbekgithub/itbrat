@@ -72,7 +72,7 @@ export default function Projects() {
         ))}
       </div>
       {!infoProject && !click ? (
-        <div className="w-full h-full grid lg:grid-cols-2 grid-cols-1 gap-5 py-3">
+        <div className="w-full h-[calc(100vh-100px)] overflow-y-scroll scrollbar-thin grid lg:grid-cols-2 grid-cols-1 gap-5 py-3 px-1">
           {showProjects.results
             ?.filter((item) => item.is_owner)
             ?.map((item) => (

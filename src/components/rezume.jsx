@@ -20,8 +20,6 @@ export default function Rezume() {
   const hard_skills = selectedResume?.hard_skills?.[0];
   const text = hard_skills ? hard_skills.split(",") : [];
 
-  
-
   useEffect(() => {
     dispatch(getAllResume());
   }, [statuslike]);
@@ -41,6 +39,32 @@ export default function Rezume() {
     setIsSelectedResume(!isSelectedResume);
   };
 
+  const handleBackToList = () => {
+    setIsSelectedResume(false);
+    dispatch({ type: "resumes/clearSelectedResume" });
+  };
+  const [iconSize, setIconSize] = useState(40);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIconSize(30); // Kichik ekranlar uchun o'lcham
+      } else {
+        setIconSize(40); // Katta ekranlar uchun o'lcham
+      }
+    };
+
+    // Boshida bir marta chaqiramiz
+    handleResize();
+
+    // Resize event uchun listener qo'shamiz
+    window.addEventListener("resize", handleResize);
+
+    // Component o'chirilganda listenerni olib tashlaymiz
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // console.log(selectedResume);
+  // console.log(allResume);
 
   return (
     <div className="px-5">
@@ -54,12 +78,12 @@ export default function Rezume() {
             onChange={(e) => dispatch(searchAllResume(e.target.value))}
           />
         </div>
-        <h1 className="text-main-white text-3xl font-semibold">Резюме</h1>
+        <h1 className="text-main-white text-3xl font-semibold px-3">Резюме</h1>
 
         {isSelectedResume ? (
           <div className="w-full relative min-h-[233px] bg-[#8D8D8D] rounded-lg p-5">
             <GrFormPreviousLink
-              onClick={() => setIsSelectedResume(false)}
+              onClick={handleBackToList}
               className="absolute top-0 left-0 hover:text-main-red hover:scale-110 cursor-pointer"
               size={30}
             />
@@ -141,7 +165,7 @@ export default function Rezume() {
             )}
           </div>
         ) : (
-          <div className="w-full h-full grid lg:grid-cols-2 grid-cols-1 gap-5 py-3">
+          <div className="w-full h-[520px] overflow-y-scroll scrollbar-thin  grid lg:grid-cols-2 grid-cols-1 gap-5 py-3 px-3">
             {allResume.results?.map((item) => (
               <div key={item.id} className="w-full h-full relative">
                 <div
@@ -167,17 +191,19 @@ export default function Rezume() {
                       />
                     )}
                   </button>
-                  <div className=" h-[45px] w-full bg-gray-500 bg-clip-padding backdrop-filter  backdrop-blur bg-opacity-20 backdrop-saturate-50 backdrop-contrast-100 flex justify-between items-center p-6">
+                  <div className=" h-[55px] w-full bg-gray-500 bg-clip-padding backdrop-filter  backdrop-blur bg-opacity-20 backdrop-saturate-50 backdrop-contrast-100 flex justify-between items-center p-6">
                     <div>
-                      <h5 className="text-main-white">
+                      <h5 className="text-main-white text-[clamp(12px,2vw,20px)]">
                         {item.owner.first_name}
                       </h5>
-                      <p className="text-second-color">{item.heading.name}</p>
+                      <p className="text-second-color text-[clamp(10px,1vw,14px)]">
+                        {item.heading.name}
+                      </p>
                     </div>
                     <GrLinkNext
                       onClick={() => handleGetResume(item.id)}
                       className="transform hover:translate-x-2 transition-transform ease-in duration-200 cursor-pointer"
-                      size={40}
+                      size={iconSize}
                       color="white"
                     />
                   </div>

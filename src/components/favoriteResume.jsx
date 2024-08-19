@@ -31,10 +31,37 @@ export default function FavoriteResume() {
   };
 
   const handleGetResume = async (id) => {
+    console.log(id);
+
     await dispatch(getResumeById(id));
     setIsSelectedResume(!isSelectedResume);
   };
 
+  const handleBackToList = () => {
+    setIsSelectedResume(false);
+    dispatch({ type: "resumes/clearSelectedResume" });
+  };
+  const [iconSize, setIconSize] = useState(40);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIconSize(30); // Kichik ekranlar uchun o'lcham
+      } else {
+        setIconSize(40); // Katta ekranlar uchun o'lcham
+      }
+    };
+
+    // Boshida bir marta chaqiramiz
+    handleResize();
+
+    // Resize event uchun listener qo'shamiz
+    window.addEventListener("resize", handleResize);
+
+    // Component o'chirilganda listenerni olib tashlaymiz
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // console.log(selectedResume);
 
   return (
     <div className="px-5">
@@ -42,7 +69,7 @@ export default function FavoriteResume() {
         {isSelectedResume ? (
           <div className=" w-full relative min-h-[233px] bg-[#8D8D8D] rounded-lg p-5">
             <GrFormPreviousLink
-              onClick={() => setIsSelectedResume(false)}
+              onClick={handleBackToList}
               className="absolute top-0 left-0 hover:text-main-red hover:scale-110 cursor-pointer"
               size={30}
             />
@@ -136,11 +163,11 @@ export default function FavoriteResume() {
                 }
               />
             </div>
-            <div className="w-full h-full grid lg:grid-cols-2 grid-cols-1 gap-5 py-3">
+            <div className="w-full h-[calc(100vh-180px)] overflow-y-scroll scrollbar-thin grid lg:grid-cols-2 grid-cols-1 gap-5 py-1 px-5">
               {setFavoriteResume.results?.map((item) => (
                 <div key={item.id} className="w-full h-full relative">
                   <div
-                    className="flex items-end bg-cover bg-center w-[100%] h-[435px] rounded-xl"
+                    className="flex items-end bg-cover bg-center w-[100%] md:h-[463px] h-[370px] rounded-xl"
                     style={{
                       backgroundImage: `url(${item.resume.image})`,
                     }}
@@ -155,17 +182,17 @@ export default function FavoriteResume() {
                     </button>
                     <div className=" h-[50px] w-full bg-gray-500 bg-clip-padding backdrop-filter  backdrop-blur bg-opacity-20 backdrop-saturate-50 backdrop-contrast-100 flex justify-between items-center p-7">
                       <div>
-                        <h5 className="text-main-white">
+                        <h5 className="text-main-white text-[clamp(12px,2vw,20px)]">
                           {item.resume.owner.first_name}
                         </h5>
-                        <p className="text-second-color">
+                        <p className="text-second-color text-[clamp(10px,1vw,14px)]">
                           {item.resume.heading.name}
                         </p>
                       </div>
                       <GrLinkNext
-                        onClick={() => handleGetResume(item.id)}
+                        onClick={() => handleGetResume(item.resume.id)}
                         className="transform hover:translate-x-2 transition-transform ease-in duration-200 cursor-pointer"
-                        size={40}
+                        size={iconSize}
                         color="white"
                       />
                     </div>

@@ -229,6 +229,10 @@ const resumeSlice = createSlice({
   name: "resume",
   initialState,
   extraReducers: (builder) => {
+    builder
+    .addCase("resumes/clearSelectedResume", (state) => {
+      state.selectedResume = null;
+    });
     builder.addCase(addResume.pending, (state) => {
       state.status = "pending";
     });

@@ -34,15 +34,15 @@ export default function AddProjects({ stateValue, setStateValue }) {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#1E1E1E] rounded-lg mt-2 p-3">
+    <div className="w-full md:h-[calc(100vh-100px)] overflow-y-scroll xl:overflow-hidden scrollbar-thin bg-[#1E1E1E] rounded-lg mt-2 p-3">
       <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col">
-        <div className="w-full flex xl:flex-row flex-col">
+        <div className="w-full flex xl:flex-row flex-col ">
           <div className="w-1/2">
             <h3 className="text-main-white text-[clamp(16px,3vw,24px)] font-bold">
               Новый проект
             </h3>
             <div className="w-full relative">
-              <div className="w-full max-w-[298px] h-[335px] bg-[#2E2E2E] flex items-center justify-center rounded-xl">
+              <div className="w-full md:max-w-[298px]   h-[255px] bg-[#2E2E2E] flex items-center justify-center rounded-xl">
                 <label htmlFor="fileInput" className="cursor-pointer">
                   <img src={addPhoto} alt="add" />
                 </label>
@@ -162,7 +162,7 @@ export default function AddProjects({ stateValue, setStateValue }) {
 
           <textarea
             required
-            className="bg-[#2E2E2E] w-full min-h-[265px] text-main-white mt-2 rounded-lg"
+            className="bg-[#2E2E2E] w-full min-h-[205px] text-main-white mt-2 rounded-lg"
             {...register("description")}
           ></textarea>
         </div>
