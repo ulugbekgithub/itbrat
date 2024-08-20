@@ -78,7 +78,7 @@ export default function Rezume() {
             onChange={(e) => dispatch(searchAllResume(e.target.value))}
           />
         </div>
-        <h1 className="text-main-white text-3xl font-semibold px-3">Резюме</h1>
+        <h1 className="text-main-white text-[clamp(20px,3vw,24px)] font-semibold px-3">Резюме</h1>
 
         {isSelectedResume ? (
           <div className="w-full relative min-h-[233px] bg-[#8D8D8D] rounded-lg p-5">
@@ -89,7 +89,7 @@ export default function Rezume() {
             />
             {selectedResume ? (
               <div>
-                <div className="w-full flex flex-col xl:flex-row md:gap-[80px]">
+                <div className="w-full flex flex-col xl:flex-row xl:gap-[80px] gap-[10px]">
                   <div className="flex items-start gap-3">
                     <div className="flex items-center justify-center w-[100px] h-[100px] border-4 border-[#680202] rounded-full">
                       <img
@@ -127,7 +127,7 @@ export default function Rezume() {
                     </ul>
                   </div>
                 </div>
-                <div className="flex gap-[100px] md:gap-[215px]">
+                <div className="w-full flex xl:flex-row flex-col justify-between ">
                   <div>
                     <h1 className="text-main-black text-[clamp(16px,3vw,24px)] font-bold">
                       Навыки
@@ -140,7 +140,7 @@ export default function Rezume() {
                             key={idx}
                             className={`${idx % 2 === 0 && "bg-main-black"} ${
                               idx % 2 === 1 && "bg-[#4A2020]"
-                            } p-1 rounded-md`}
+                            } p-1 px-3 rounded-xl font-semibold`}
                           >
                             <span className="text-main-white">{item}</span>
                           </div>
@@ -148,10 +148,10 @@ export default function Rezume() {
                       </div>
                     </span>
                   </div>
-                  <div className="mt-6 md:mt-10">
+                  <div className="w-[63%] flex justify-start mt-6 md:mt-10">
                     <span className="text-main-black text-[clamp(14px,3vw,16px)] font-light">
                       Soft skills
-                      <div className="p-1 bg-[#4A2020] text-main-white rounded-md">
+                      <div className="p-1 px-3 bg-[#4A2020] text-main-white rounded-xl font-semibold">
                         {selectedResume?.soft_skills}
                       </div>
                     </span>

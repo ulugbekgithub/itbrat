@@ -32,9 +32,9 @@ export default function Footer() {
           </ul>
         </div>
        </div>
-      <div>
-        <ul className="text-[clamp(8px,3vw,14px)]">
-          <li className="w-[196px] h-[32px]">
+      <div className="flex justify-start">
+        <ul className="flex flex-col items-start text-[clamp(8px,3vw,14px)]">
+          <li className="md:w-[196px] w-[98px] md:h-[32px] h-[16px]">
             <Link to={"/"}>
             <img onClick={() => window.scrollTo(0, 0)} src={logo} alt="logo" />
             </Link>

@@ -1,43 +1,59 @@
 import { useState, useEffect } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUserStatus, setLocalStatus } from "../app/reducers/statusSlice";
+import { getCurrentUser } from "../app/reducers/authSlice";
 
-export default function StatusComponent() {
+export default function StatusComponent({ userId }) {
+  const dispatch = useDispatch();
+  const storedStatus = useSelector((state) => state.status.status[userId]);
+  const currentUser = useSelector((state) => state.auth.currentUser);
+
   const [selectedIndex, setSelectedIndex] = useState(null);
-  const [selectedStatus, setSelectedStatus] = useState({});
+  const [selectedStatus, setSelectedStatus] = useState(storedStatus || null);
 
-  // Retrieve stored status from localStorage on component mount
+  // Retrieve status from localStorage on mount
   useEffect(() => {
-    const storedStatus = JSON.parse(localStorage.getItem("selectedStatus"));
-    if (storedStatus) {
+    const savedStatus = localStorage.getItem(`userStatus-${userId}`);
+    if (savedStatus) {
+      setSelectedStatus(JSON.parse(savedStatus));
+    } else if (storedStatus) {
       setSelectedStatus(storedStatus);
     }
-  }, []);
+  }, [userId, storedStatus]);
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
 
   const toggleAccordion = (index) => {
     setSelectedIndex(index === selectedIndex ? null : index);
   };
 
-  const handleStatusChange = (index, status) => {
-    // Update the status state
-    const updatedStatus = {
-      ...selectedStatus,
-      [index]: status,
-    };
-    setSelectedStatus(updatedStatus);
+  const handleStatusChange = (index, statusValue) => {
+    setSelectedStatus(statusValue); // Update UI immediately
 
-    // Store the updated status in localStorage
-    localStorage.setItem("selectedStatus", JSON.stringify(updatedStatus));
+    // Persist status in localStorage
+    localStorage.setItem(`userStatus-${userId}`, JSON.stringify(statusValue));
+
+    // Update Redux state
+    dispatch(setLocalStatus({ userId, status: statusValue }));
+
+    // Make API call to update status in the backend
+    dispatch(updateUserStatus({ userId, status: statusValue }));
   };
 
   const accordionData = [
     {
-      title: "Section 1",
-      statuses: ["Active", "Inactive"],
+      statuses: [
+        { label: "Активно ищу работу", value: 1 },
+        { label: "Работаю над проектом", value: 2 },
+      ],
     },
   ];
 
   return (
-    <div className="w-full max-w-xl mx-auto mt-10">
+    <div className="w-full max-w-xl mx-auto mt-3">
       {accordionData.map((item, index) => (
         <div key={index} className="mb-4">
           <div className="flex items-center justify-between">
@@ -47,13 +63,13 @@ export default function StatusComponent() {
                 selectedIndex === index ? "text-main-red" : ""
               }`}
             >
-              {/* Display Title and Selected Status */}
               <h3 className="text-lg font-medium">
-               
                 <span className="text-sm font-light text-main-red">
-                  {selectedStatus[index]
-                    ? ` - ${selectedStatus[index]}`
-                    : "(Not Selected)"}
+                  {selectedStatus === 1
+                    ? "Активно ищу работу"
+                    : selectedStatus === 2
+                    ? "Работаю над проектом"
+                    : "выберите статус"}
                 </span>
               </h3>
               {selectedIndex === index ? (
@@ -64,24 +80,26 @@ export default function StatusComponent() {
             </button>
           </div>
 
-          {/* Accordion Content with Radio Buttons */}
           <div
             className={`overflow-hidden transition-all duration-500 ${
               selectedIndex === index ? "max-h-screen p-4" : "max-h-0"
             }`}
           >
             <div className="mt-4">
-              {item.statuses.map((status, idx) => (
-                <label key={idx} className="flex items-center mb-2 text-main-red">
+              {item.statuses.map((status) => (
+                <label
+                  key={status.value}
+                  className="flex items-center mb-2 text-main-red"
+                >
                   <input
                     type="radio"
                     name={`status-${index}`}
-                    value={status}
-                    checked={selectedStatus[index] === status}
-                    onChange={() => handleStatusChange(index, status)}
+                    value={status.value}
+                    checked={selectedStatus === status.value}
+                    onChange={() => handleStatusChange(index, status.value)}
                     className="mr-2"
                   />
-                  {status}
+                  {status.label}
                 </label>
               ))}
             </div>

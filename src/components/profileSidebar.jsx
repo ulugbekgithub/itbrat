@@ -11,6 +11,7 @@ import { getCurrentUserResume } from "../app/reducers/resumeSlice";
 import { baseURL } from "../app/api/baseUrl";
 import axios from "axios";
 import StatusComponent from "./statusComponent";
+import { logout } from "../app/reducers/authSlice";
 
 export default function ProfileSidebar() {
   const dispatch = useDispatch();
@@ -43,6 +44,11 @@ export default function ProfileSidebar() {
     }
   };
 
+  const logOutProfile = () => {
+    dispatch(logout());
+    navigate("/");
+  };
+
   return (
     <div className="bg-main-black">
       <div className=" min-h-screen flex flex-row bg-main-black  p-5">
@@ -50,6 +56,7 @@ export default function ProfileSidebar() {
           <div className="flex items-center justify-center h-20 shadow-md">
             <div className="w-full flex justify-between p-5">
               <IoExitOutline
+                onClick={logOutProfile}
                 size={23}
                 className="cursor-pointer hover:text-main-red"
               />
@@ -93,8 +100,8 @@ export default function ProfileSidebar() {
                   currentResume[0]?.heading.name}
               </span>
             </li>
-            <li>
-              <StatusComponent/>
+            <li className="text-main-red">
+              {selectedResume?.owner?.status || <StatusComponent />}
             </li>
           </ul>
 

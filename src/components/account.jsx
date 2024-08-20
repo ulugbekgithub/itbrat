@@ -91,6 +91,7 @@ export default function Account() {
         })
         .catch((error) => console.error(error));
     }
+    dispatch(getCurrentUserResume())
   };
 
   const handleDelete = (id) => {

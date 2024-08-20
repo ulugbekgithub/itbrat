@@ -56,7 +56,7 @@ export default function Projects() {
   return (
     <div className="px-5">
       <div className="flex gap-2 items-center">
-        <h1 className="text-main-white text-3xl font-semibold">Проекты</h1>
+        <h1 className="text-main-white text-[clamp(20px,3vw,24px)] font-semibold">Проекты</h1>
         {currentUser?.groups?.map((item) => (
           <div key={item.id}>
             {item.id === 2 && (

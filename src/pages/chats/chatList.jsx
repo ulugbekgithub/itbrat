@@ -3,11 +3,9 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { baseURL } from "../../app/api/baseUrl";
 
-
-
 const ChatList = ({ onMemberClick }) => {
   const [chatMemberList, setChatMemberList] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getMembersList = () => {
     axios
@@ -51,7 +49,7 @@ const ChatList = ({ onMemberClick }) => {
   }, [searchTerm]);
 
   console.log(chatMemberList);
-  
+
   return (
     <div className="xl:w-[50%] w-full bg-[#111111] h-[calc(100vh-60px)] rounded-md p-4 overflow-y-scroll scrollbar-thin">
       <input
@@ -64,20 +62,26 @@ const ChatList = ({ onMemberClick }) => {
       {chatMemberList?.map((member) => (
         <NavLink
           to={`${member?.id}`}
-          key={member?.receiver?.id}
+          key={member?.sender_type?.id}
           onClick={onMemberClick}
           className={`p-2 mb-2 rounded cursor-pointer hover:bg-sky-700   flex gap-2 items-start ${
-            member?.active ? "bg-gray-700" : "bg-gray-800"
+            member?.active ? "bg-gray-400" : "bg-gray-800"
           }`}
         >
           <div className="">
             <div className="flex items-center justify-center w-12 h-12 rounded-full ">
-              <img className="w-full h-full rounded-full object-cover" src={member?.receiver?.resume[0]?.image} alt="Avatar" />
+              <img
+                className="w-full h-full rounded-full object-cover"
+                src={`https://api.itbratrf.ru${member?.sender_type?.resume[0]?.image}`}
+                alt="Avatar"
+              />
             </div>
           </div>
           <div>
             <div className="">
-              <span className="font-bold">{member?.receiver?.first_name}</span>
+              <span className="font-bold">
+                {member?.sender_type?.first_name}
+              </span>
               {/* <span className="text-sm text-gray-400">10:00</span> */}
             </div>
             <p className="text-gray-400">{member?.message}</p>

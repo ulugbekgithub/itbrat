@@ -3,22 +3,32 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUserResume } from "../app/reducers/resumeSlice";
 import { IoExitOutline, IoNotificationsOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import StatusComponent from "./statusComponent";
+import { logout } from "../app/reducers/authSlice";
 
 export default function ProfileBurger() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { currentResume, selectedResume } = useSelector((state) => state.resumes);
+  const { currentResume, selectedResume } = useSelector(
+    (state) => state.resumes
+  );
 
   useEffect(() => {
     dispatch(getCurrentUserResume());
   }, [dispatch]);
+  const logOutProfile = () => {
+    dispatch(logout());
+    navigate("/");
+  };
   return (
     <div className="">
       <div className="min-h-screen flex flex-row p-5">
         <div className="flex flex-col max-w-[393px]  max-h-[600px] w-full bg-gray-700  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 text-main-white rounded-3xl overflow-hidden">
-        <div className="flex items-center justify-center h-20 shadow-md">
+          <div className="flex items-center justify-center h-20 shadow-md">
             <div className="w-full flex justify-between p-5">
               <IoExitOutline
+                onClick={logOutProfile}
                 size={23}
                 className="cursor-pointer hover:text-main-red"
               />
@@ -50,15 +60,18 @@ export default function ProfileBurger() {
             </li>
             <li>
               <h2 className="text-center">
-              {selectedResume?.owner?.first_name ||
+                {selectedResume?.owner?.first_name ||
                   currentResume[0]?.owner.first_name}
               </h2>
             </li>
             <li className="text-center">
               <span className="text-second-color">
-              {selectedResume?.heading?.name ||
+                {selectedResume?.heading?.name ||
                   currentResume[0]?.heading.name}
               </span>
+            </li>
+            <li className="text-main-red">
+              {selectedResume?.owner?.status || <StatusComponent />}
             </li>
           </ul>
 

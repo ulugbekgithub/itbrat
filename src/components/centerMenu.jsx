@@ -4,7 +4,7 @@ import "./css/custom.css";
 
 export default function CenterMenu() {
   return (
-    <div className="w-full py-10">
+    <div className="w-full md:py-4">
       <div className="md:h-[calc(100vh-140px)] w-full ">
         <Outlet />
       </div>
