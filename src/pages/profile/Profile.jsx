@@ -75,6 +75,10 @@ export default function Profile() {
     navigate("/profile/favorite-projects");
     setClick(false);
   };
+  const goToFavoriteResume = () => {
+    navigate("/profile/favorite-resume");
+    setClick(false);
+  };
 
   const [open, setOpen] = useState(false);
 
@@ -115,7 +119,7 @@ export default function Profile() {
                     </span>
                   </span>
                   <span
-                    onClick={goToResume}
+                    onClick={goToFavoriteResume}
                     className="flex flex-row items-center transform hover:translate-x-2 transition-transform ease-in duration-200  hover:text-main-red"
                   >
                     <span className="text-sm font-medium text-second-color">

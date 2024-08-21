@@ -21,37 +21,37 @@ const RoleSelection = () => {
 
   const putRoleUser = async (role) => {
     await dispatch(updateCurrentUser({ ...currentUser, role }));
-    navigate("/profile")
+    navigate("/profile/accaunt")
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black p-5">
       <div className="bg-white rounded-lg p-8 shadow-lg max-w-md w-full">
-        <h2 className="text-center text-xl font-semibold mb-6 text-black">
+        <h2 className="text-center text-[clamp(16px,3vw,24px)] font-semibold mb-6 text-black">
           Пожалуйста, выберите свою роль
         </h2>
         <div className="flex justify-around mb-6">
           <button
             onClick={() => handleRoleSelect("2")}
-            className={`flex flex-col items-center p-4 rounded-lg transition ${
+            className={`flex flex-col items-center md:p-4 p-2 rounded-lg transition ${
               selectedRole === "2"
                 ? "bg-red-600 text-white"
                 : "bg-gray-100 text-black"
             }`}
           >
-            <FaBriefcase size={40} />
-            <span className="mt-2">Работодатель</span>
+            <FaBriefcase size={30} />
+            <span className="mt-2 text-[clamp(12px,2vw,16px)]">Работодатель</span>
           </button>
           <button
             onClick={() => handleRoleSelect("3")}
-            className={`flex flex-col items-center p-4 rounded-lg transition ${
+            className={`flex flex-col items-center md:p-4 p-2 rounded-lg transition ${
               selectedRole === "3"
                 ? "bg-red-600 text-white"
                 : "bg-gray-100 text-black"
             }`}
           >
-            <FaPen size={40} />
-            <span className="mt-2">Соискатель</span>
+            <FaPen size={30} />
+            <span className="mt-2 text-[clamp(12px,2vw,16px)]">Соискатель</span>
           </button>
         </div>
         <button

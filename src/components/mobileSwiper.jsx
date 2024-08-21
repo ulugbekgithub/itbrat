@@ -91,7 +91,7 @@ const MobileSwiper = () => {
                 />
                 <div className="absolute" />
                 <div className="relative flex flex-col gap-10">
-                <div className="absolute top-[-90px] right-[0px] flex items-center gap-4">
+                <div className="absolute top-[-100px] right-[0px] flex items-center gap-4">
                 <div>
                 <button className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
                   <FaEye size={15} className=" cursor-pointer hover:scale-110"/>
@@ -118,7 +118,7 @@ const MobileSwiper = () => {
                 <span className="text-second-color text-[13px]">{item.likes}</span>
                 </div>
                 </div>
-                  <h1 className="text-[16px] font-semibold text-start">
+                  <h1 className="text-[clamp(10px,3vw,16px)] font-semibold text-start">
                     {item.title}
                   </h1>
                   <div className="flex items-end justify-between">

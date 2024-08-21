@@ -167,7 +167,7 @@ export default function FavoriteResume() {
               {setFavoriteResume.results?.map((item) => (
                 <div key={item.id} className="w-full h-full relative">
                   <div
-                    className="flex items-end bg-cover bg-center w-[100%] md:h-[463px] h-[370px] rounded-xl"
+                    className="flex items-end bg-cover bg-center w-[100%] md:h-[463px] h-[295px] rounded-xl"
                     style={{
                       backgroundImage: `url(${item.resume.image})`,
                     }}

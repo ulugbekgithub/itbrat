@@ -74,16 +74,16 @@ export default function Register() {
         onSubmit={handleSubmit}
       >
         {() => (
-          <Form className="p-10 bg-[#101010] rounded flex justify-center items-center flex-col shadow-2xl shadow-main-red">
-            <p className="mb-5 text-3xl uppercase text-main-white">
+          <Form className="md:w-[40%] w-[70%] py-5 md:px-5 px-2 bg-[#101010] rounded flex justify-center items-center flex-col shadow-2xl shadow-main-red">
+            <p className="mb-5 text-[clamp(16px,3vw,28px)] uppercase text-main-white">
               Регистрация
             </p>
 
-            <div className="mb-5 w-80">
+            <div className="mb-5 w-[90%]">
               <Field
                 type="text"
                 name="username"
-                className="p-3 w-full focus:border-purple-700 rounded border-2 outline-none"
+                className="md:p-3 p-2 w-full focus:border-purple-700 rounded border-2 outline-none"
                 placeholder="Имя пользователя"
               />
               <p className="text-main-red">{usernameErr}</p>
@@ -94,11 +94,11 @@ export default function Register() {
               />
             </div>
 
-            <div className="mb-5 w-80">
+            <div className="mb-5 w-[90%]">
               <Field
                 type="text"
                 name="firstName"
-                className="p-3 w-full focus:border-purple-700 rounded border-2 outline-none"
+                className="md:p-3 p-2 w-full focus:border-purple-700 rounded border-2 outline-none"
                 placeholder="Имя"
               />
               <ErrorMessage
@@ -108,11 +108,11 @@ export default function Register() {
               />
             </div>
 
-            <div className="mb-5 w-80">
+            <div className="mb-5 w-[90%]">
               <Field
                 type="text"
                 name="lastName"
-                className="p-3 w-full focus:border-purple-700 rounded border-2 outline-none"
+                className="md:p-3 p-2 w-full focus:border-purple-700 rounded border-2 outline-none"
                 placeholder="Фамилия"
               />
               <ErrorMessage
@@ -122,11 +122,11 @@ export default function Register() {
               />
             </div>
 
-            <div className="mb-5 w-80">
+            <div className="mb-5 w-[90%]">
               <Field
                 type="email"
                 name="email"
-                className="p-3 w-full focus:border-purple-700 rounded border-2 outline-none"
+                className="md:p-3 p-2 w-full focus:border-purple-700 rounded border-2 outline-none"
                 placeholder="Email"
               />
               <p className="text-main-red">{emailErr}</p>
@@ -137,11 +137,11 @@ export default function Register() {
               />
             </div>
 
-            <div className="mb-5 w-80">
+            <div className="mb-5 w-[90%]">
               <Field
                 type="password"
                 name="password"
-                className="p-3 w-full focus:border-purple-700 rounded border-2 outline-none"
+                className="md:p-3 p-2 w-full focus:border-purple-700 rounded border-2 outline-none"
                 placeholder="Пароль"
               />
               <ErrorMessage
@@ -151,11 +151,11 @@ export default function Register() {
               />
             </div>
 
-            <div className="mb-5 w-80">
+            <div className="mb-5 w-[90%]">
               <Field
                 type="password"
                 name="confirmPassword"
-                className="p-3 w-full focus:border-purple-700 rounded border-2 outline-none"
+                className="md:p-3 p-2 w-full focus:border-purple-700 rounded border-2 outline-none"
                 placeholder="Повтор пароля"
               />
               <ErrorMessage
@@ -167,7 +167,7 @@ export default function Register() {
 
             <button
               type="submit"
-              className="bg-main-red hover:bg-purple-900 text-white font-bold p-2 rounded w-80"
+              className="bg-main-red hover:bg-purple-900 text-white font-bold p-2 rounded w-[90%]"
             >
               Регистрация
             </button>

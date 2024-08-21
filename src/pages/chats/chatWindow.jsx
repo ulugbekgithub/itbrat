@@ -210,14 +210,14 @@ const ChatWindow = (changer) => {
           <div className="h-[58px] w-[58px] rounded-full">
             <img
               className="w-full h-full rounded-full object-cover"
-              src={memberDetail?.receiver?.resume[0]?.image}
+              src={`https://api.itbratrf.ru${memberDetail?.sender_type?.resume[0]?.image}`}
               alt=""
             />
           </div>
           <div className="ml-4">
             <h2 className="font-bold text-lg">
-              {memberDetail?.receiver?.first_name}{" "}
-              {memberDetail?.receiver?.last_name}
+              {memberDetail?.sender_type?.first_name}{" "}
+              {memberDetail?.sender_type?.last_name}
             </h2>
             {/* <span className="text-sm text-gray-400">Online</span> */}
           </div>

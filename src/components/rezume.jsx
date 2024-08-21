@@ -169,7 +169,7 @@ export default function Rezume() {
             {allResume.results?.map((item) => (
               <div key={item.id} className="w-full h-full relative">
                 <div
-                  className="flex items-end bg-cover bg-center w-[100%] h-[435px] rounded-xl"
+                  className="flex items-end bg-cover bg-center w-[100%] md:h-[435px] h-[295px] rounded-xl"
                   style={{
                     backgroundImage: `url(${item.image})`,
                   }}

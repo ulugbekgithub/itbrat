@@ -67,7 +67,7 @@ const DesktopSwiper = () => {
                 />
                 <div className="absolute inset-0 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10" />
                 <div className="relative flex flex-col gap-10">
-                <div className="absolute top-[-210px] right-[10px] flex items-center gap-4">
+                <div className="absolute top-[-230px] right-[5px] flex items-center gap-4">
                 <div>
                 <button className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
                   <FaEye className=" cursor-pointer hover:scale-110"/>
@@ -94,11 +94,11 @@ const DesktopSwiper = () => {
                 <span className="text-second-color text-[13px]">{item.likes}</span>
                 </div>
                 </div>
-                  <h1 className="flex justify-start text-xl font-semibold lg:text-2xl text-start">
+                  <h1 className="flex justify-start  font-semibold  text-start h-10">
                     {item.title}
                   </h1>
                   <div className="w-full flex items-end justify-between">
-                    <p className="lg:text-[18px] text-second-color text-start">
+                    <p className=" text-second-color text-start">
                       от <br />
                       {item.price} р.
                     </p>

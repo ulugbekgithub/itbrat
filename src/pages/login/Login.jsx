@@ -58,14 +58,14 @@ export default function Login() {
         </Link>
         <form
           onSubmit={handleSubmit}
-          className="p-10 bg-[#101010] rounded flex justify-center items-center flex-col shadow-2xl shadow-main-red"
+          className="md:w-[30%] w-[80%] py-10 px-6 bg-[#101010] rounded flex justify-center items-center flex-col shadow-2xl shadow-main-red"
         >
           <p className="mb-5 text-3xl uppercase text-main-white">Вход</p>
           <input
             onChange={(e) => setUserName(e.target.value)}
             type="text"
             name="username"
-            className="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none"
+            className="mb-5 md:p-3 p-2 w-[95%] focus:border-purple-700 rounded border-2 outline-none"
             placeholder="Имя пользователя"
             required
           />
@@ -73,12 +73,12 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             name="password"
-            className="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none"
+            className="mb-5 md:p-3 p-2 w-[95%] focus:border-purple-700 rounded border-2 outline-none"
             placeholder="Пароль"
             required
           />
           <button
-            className="bg-main-red hover:bg-purple-900 text-white font-bold p-2 rounded w-80"
+            className="bg-main-red hover:bg-purple-900 text-white font-bold p-2 rounded w-[95%]"
             id="login"
             type="submit"
           >
