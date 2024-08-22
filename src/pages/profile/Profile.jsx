@@ -66,10 +66,6 @@ export default function Profile() {
     setClick(false);
   };
 
-  const goToSettings = () => {
-    navigate("/profile/settings");
-    setClick(false);
-  };
 
   const goToFavoriteProject = () => {
     navigate("/profile/favorite-projects");
@@ -189,7 +185,7 @@ export default function Profile() {
 
           <div className="px-12 py-20">
             <ul>
-              <li className="text-base">
+              {/* <li className="text-base">
                 <span
                   onClick={goToSettings}
                   className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red"
@@ -199,7 +195,7 @@ export default function Profile() {
                   </span>
                   <span className="text-sm font-medium">Настройки</span>
                 </span>
-              </li>
+              </li> */}
 
               <li className="text-base">
                 <span
