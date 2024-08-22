@@ -147,8 +147,8 @@ export default function Account() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              <label htmlFor="" className="flex flex-col">
+            <div className="grid grid-cols-2 gap-3 ">
+              <label htmlFor="" className="flex flex-col text-[clamp(8px,3vw,16px)]">
                 Контактная информация:
                 <input
                   required
@@ -157,7 +157,7 @@ export default function Account() {
                   {...register("contact")}
                 />
               </label>
-              <label htmlFor="" className="flex flex-col">
+              <label htmlFor="" className="flex flex-col text-[clamp(8px,3vw,16px)]">
                 Опыт работы:
                 <input
                   required
@@ -166,7 +166,7 @@ export default function Account() {
                   {...register("experience")}
                 />
               </label>
-              <label htmlFor="" className="flex flex-col">
+              <label htmlFor="" className="flex flex-col text-[clamp(8px,3vw,16px)]">
                 Hard skills:
                 <input
                   required
@@ -175,7 +175,7 @@ export default function Account() {
                   {...register("hard_skills")}
                 />
               </label>
-              <label htmlFor="" className="flex flex-col">
+              <label htmlFor="" className="flex flex-col text-[clamp(8px,3vw,16px)]">
                 Soft skills:
                 <input
                   required
@@ -202,7 +202,7 @@ export default function Account() {
                 ))}
               </select>
             </label>
-            <label htmlFor="" className="flex flex-col">
+            <label htmlFor="" className="flex flex-col text-[clamp(8px,3vw,16px)]">
               Личные данные:
               <textarea
                 required
@@ -215,14 +215,14 @@ export default function Account() {
             <div className="flex justify-center gap-3 py-2">
               <button
                 type="submit"
-                className="text-main-white text-[clamp(12px,3vw,18px)] rounded-md font-bold hover:scale-105 duration-150 bg-[#680202] w-[25%] min-h-[30px]"
+                className="text-main-white text-[clamp(8px,3vw,18px)] rounded-md font-bold hover:scale-105 duration-150 bg-[#680202] w-[25%] min-h-[30px]"
               >
                 Сохранить
               </button>
               <button
                 onClick={closeForm}
                 type="button"
-                className="text-main-white text-[clamp(12px,3vw,18px)] rounded-md font-bold hover:scale-105 duration-150 bg-main-black w-[20%] min-h-[30px]"
+                className="text-main-white text-[clamp(8px,3vw,18px)] rounded-md font-bold hover:scale-105 duration-150 bg-main-black w-[20%] min-h-[30px]"
               >
                 Oтмена
               </button>
@@ -235,9 +235,9 @@ export default function Account() {
             <div>
               <div className="w-full flex flex-col xl:flex-row xl:gap-[80px] gap-[10px]">
                 <div className="flex items-start gap-3">
-                  <div className="flex items-center justify-center w-[100px] h-[100px] border-4 border-[#680202] rounded-full">
+                  <div className="flex items-center justify-center md:w-[100px] w-[70px] md:h-[100px] h-[70px] border-4 border-[#680202] rounded-full">
                     <img
-                      className="w-[90px] h-[90px] rounded-full object-cover"
+                      className="md:w-[90px] w-[60px] md:h-[90px] h-[60px] rounded-full object-cover"
                       src={currentResume[0]?.image}
                       alt="profile"
                     />
@@ -278,7 +278,7 @@ export default function Account() {
                   </h1>
                   <span className="text-main-black text-[clamp(14px,3vw,16px)] font-light">
                     Hard skills
-                    <div className="flex items-center gap-3">
+                    <div className="grid  grid-cols-2 gap-2 text-center">
                       {text.map((item, idx) => (
                         <div
                           key={idx}
@@ -292,7 +292,7 @@ export default function Account() {
                     </div>
                   </span>
                 </div>
-                <div className="w-[63%] flex justify-start mt-6 md:mt-10">
+                <div className="w-[52%] flex justify-start mt-6 md:mt-10">
                   <span className="text-main-black text-[clamp(14px,3vw,16px)] font-light">
                     Soft skills
                     <div className="p-1 px-3 bg-[#4A2020] text-main-white rounded-xl font-semibold">

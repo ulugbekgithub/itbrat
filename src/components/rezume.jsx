@@ -134,7 +134,7 @@ export default function Rezume() {
                     </h1>
                     <span className="text-main-black text-[clamp(14px,3vw,16px)] font-light">
                       Hard skills
-                      <div className="flex items-center gap-3">
+                      <div className="grid  grid-cols-2 gap-2 text-center">
                         {text.map((item, idx) => (
                           <div
                             key={idx}
