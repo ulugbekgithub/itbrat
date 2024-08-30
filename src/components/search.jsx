@@ -108,12 +108,14 @@ export default function Search() {
                       className="w-full md:min-w-[298px] min-w-[225px] max-w-[298px] md:min-h-[335px] min-h-[224px]   "
                     >
                       <div
-                        className="bg-cover flex items-end  bg-center w-full h-full  rounded-lg "
+                        className="relative bg-cover flex items-end  bg-center w-full h-full  rounded-lg"
                         style={{
                           backgroundImage: `url(${item.image})`,
                         }}
                       >
-                        <div className="w-full relative flex flex-col gap-10 p-5">
+                        <div className="absolute inset-0 bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10" />
+
+                        <div className="w-full relative flex flex-col gap-10 p-5 ">
                           <button className="absolute md:top-[-160px] top-[-60px] right-[10px] flex items-center justify-center w-10 h-10 rounded-full bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
                             {item.favorite ? (
                               <IoMdHeart

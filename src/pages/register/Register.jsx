@@ -8,19 +8,19 @@ import { RiCloseLargeLine } from "react-icons/ri";
 
 const validationSchema = Yup.object({
   username: Yup.string()
-    .required("Username is required")
-    .matches(/^[a-zA-Z0-9]+$/, "Username can only contain letters and numbers"),
-  firstName: Yup.string().required("First Name is required"),
-  lastName: Yup.string().required("Last Name is required"),
+    .required("Имя пользователя обязательно")
+    .matches(/^[a-zA-Z0-9]+$/, "Имя пользователя может содержать только буквы и цифры."),
+  firstName: Yup.string().required("Имя обязательно"),
+  lastName: Yup.string().required("Фамилия обязательна"),
   email: Yup.string()
-    .email("Invalid email address")
-    .required("Email is required"),
+    .email("Неверный адрес электронной почты")
+    .required("Требуется адрес электронной почты"),
   password: Yup.string()
-    .required("Password is required")
-    .min(8, "Password must be at least 8 characters"),
+    .required("Требуется пароль")
+    .min(8, "Пароль должен содержать не менее 8 символов."),
   confirmPassword: Yup.string()
-    .required("Confirm Password is required")
-    .oneOf([Yup.ref("password"), null], "Passwords must match"),
+    .required("Требуется подтверждение пароля")
+    .oneOf([Yup.ref("пароль"), null], "Пароли должны совпадать"),
 });
 
 export default function Register() {
@@ -74,12 +74,12 @@ export default function Register() {
         onSubmit={handleSubmit}
       >
         {() => (
-          <Form className="md:w-[40%] w-[70%] py-5 md:px-5 px-2 bg-[#101010] rounded flex justify-center items-center flex-col shadow-2xl shadow-main-red">
-            <p className="mb-5 text-[clamp(16px,3vw,28px)] uppercase text-main-white">
+          <Form className="md:w-[40%] w-[70%] h-[85%] py-5 md:px-5 px-2 bg-[#101010] rounded flex justify-center items-center flex-col shadow-2xl shadow-main-red ">
+            <p className="mb-3 text-[clamp(16px,3vw,28px)] uppercase text-main-white">
               Регистрация
             </p>
 
-            <div className="mb-5 w-[90%]">
+            <div className="mb-3 w-[90%]">
               <Field
                 type="text"
                 name="username"
@@ -90,11 +90,11 @@ export default function Register() {
               <ErrorMessage
                 name="username"
                 component="div"
-                className="text-red-500"
+                className="text-red-500 text-[10px]"
               />
             </div>
 
-            <div className="mb-5 w-[90%]">
+            <div className="mb-3 w-[90%]">
               <Field
                 type="text"
                 name="firstName"
@@ -104,11 +104,11 @@ export default function Register() {
               <ErrorMessage
                 name="firstName"
                 component="div"
-                className="text-red-500"
+                className="text-red-500 text-[10px]"
               />
             </div>
 
-            <div className="mb-5 w-[90%]">
+            <div className="mb-3 w-[90%]">
               <Field
                 type="text"
                 name="lastName"
@@ -118,11 +118,11 @@ export default function Register() {
               <ErrorMessage
                 name="lastName"
                 component="div"
-                className="text-red-500"
+                className="text-red-500 text-[10px]"
               />
             </div>
 
-            <div className="mb-5 w-[90%]">
+            <div className="mb-3 w-[90%]">
               <Field
                 type="email"
                 name="email"
@@ -133,11 +133,11 @@ export default function Register() {
               <ErrorMessage
                 name="email"
                 component="div"
-                className="text-red-500"
+                className="text-red-500 text-[10px]"
               />
             </div>
 
-            <div className="mb-5 w-[90%]">
+            <div className="mb-3 w-[90%]">
               <Field
                 type="password"
                 name="password"
@@ -147,11 +147,11 @@ export default function Register() {
               <ErrorMessage
                 name="password"
                 component="div"
-                className="text-red-500"
+                className="text-red-500 text-[10px]"
               />
             </div>
 
-            <div className="mb-5 w-[90%]">
+            <div className="mb-3 w-[90%]">
               <Field
                 type="password"
                 name="confirmPassword"
@@ -161,13 +161,13 @@ export default function Register() {
               <ErrorMessage
                 name="confirmPassword"
                 component="div"
-                className="text-red-500"
+                className="text-red-500 text-[10px]"
               />
             </div>
 
             <button
               type="submit"
-              className="bg-main-red hover:bg-purple-900 text-white font-bold p-2 rounded w-[90%]"
+              className="bg-main-red text-white font-bold p-2 rounded w-[90%]"
             >
               Регистрация
             </button>

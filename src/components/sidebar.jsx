@@ -31,13 +31,18 @@ export default function Sidebar() {
     navigate("/");
   };
 
+  const clickFavorite = () => {
+    setAccardionOpen(!accardionOpen);
+    dispatch({ type: "resumes/clearSelectedResume" });
+  };
+
   return (
     <div>
       <div className="min-h-screen flex flex-row bg-main-black p-5">
         <div className="flex flex-col w-full max-w-[393px]  bg-[#101010] text-main-white rounded-3xl overflow-hidden">
           <div className="flex items-center justify-center h-20 shadow-md">
             <div className="p-10">
-              <Link to={"/"}>
+              <Link to={"/"} onClick={()=>{dispatch({ type: "resumes/clearSelectedResume" })}}>
                 <img src={logo} alt="logo" />
               </Link>
             </div>
@@ -49,7 +54,7 @@ export default function Sidebar() {
                   {item.id === 2 && (
                     <div className="flex items-center gap-3">
                       <div className="w-3 h-3 bg-green-700 rounded-full"></div>{" "}
-                      <span className="text-green-700">Работадатель</span>
+                      <span className="text-green-700">Работодатель</span>
                     </div>
                   )}
                   {item.id === 3 && (
@@ -63,7 +68,7 @@ export default function Sidebar() {
             </li>
             <li>
               <div
-                onClick={() => setAccardionOpen(!accardionOpen)}
+                onClick={clickFavorite}
                 className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer"
               >
                 <span className="inline-flex  items-center justify-center h-12 w-12 text-lg">
@@ -80,12 +85,12 @@ export default function Sidebar() {
                 }`}
               >
                 <div className="flex flex-col overflow-hidden">
-                  <Link to={"/profile/favorite-projects"}>
+                  <Link to={"/profile/favorite-projects"} onClick={()=>{dispatch({ type: "resumes/clearSelectedResume" })}}>
                     <span className="text-sm font-medium text-second-color hover:text-main-red">
                       Проекты
                     </span>
                   </Link>
-                  <Link to={"/profile/favorite-resume"}>
+                  <Link to={"/profile/favorite-resume"} onClick={()=>{dispatch({ type: "resumes/clearSelectedResume" })}}>
                     <span className="text-sm font-medium text-second-color hover:text-main-red">
                       Резюме
                     </span>
@@ -93,7 +98,7 @@ export default function Sidebar() {
                 </div>
               </div>
             </li>
-            <Link to={"/profile/search"}>
+            <Link to={"/profile/search"} onClick={()=>{dispatch({ type: "resumes/clearSelectedResume" })}}>
               <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer">
                 <span className="inline-flex items-center justify-center h-12 w-12 text-lg">
                   <IoSearch />
@@ -109,15 +114,17 @@ export default function Sidebar() {
                   item.id === 3 ? "hidden" : "flex"
                 }  flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer`}
               >
-                <Link to={"/profile/projects"}>
+                <Link to={"/profile/projects"} onClick={()=>{dispatch({ type: "resumes/clearSelectedResume" })}}>
+                  <div className="flex items-center">
                   <span className="inline-flex items-center justify-center h-12 w-12 text-lg">
                     <TiDocumentText />
                   </span>
                   <span className="text-sm font-medium">Проекты</span>
+                  </div>
                 </Link>
               </li>
             ))}
-            <Link to={"/profile/accaunt"}>
+            <Link to={"/profile/accaunt"} onClick={()=>{dispatch({ type: "resumes/clearSelectedResume" })}}>
               <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer">
                 <span className="inline-flex items-center justify-center h-12 w-12 text-lg">
                   <CgProfile />
@@ -128,7 +135,7 @@ export default function Sidebar() {
             </Link>
 
             {currentUser?.groups?.map((item) => (
-              <Link key={item.id} to={"/profile/resume"}>
+              <Link key={item.id} to={"/profile/resume"} onClick={()=>{dispatch({ type: "resumes/clearSelectedResume" })}}>
                 <li
                   className={`${
                     item.id === 3 ? "hidden" : "flex"
@@ -142,7 +149,7 @@ export default function Sidebar() {
               </Link>
             ))}
 
-            <Link to={"/profile/chat"}>
+            <Link to={"/profile/chat"} onClick={()=>{dispatch({ type: "resumes/clearSelectedResume" })}}>
               <li className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-main-red cursor-pointer">
                 <span className="inline-flex items-center justify-center h-12 w-12 text-lg">
                   <BsChatLeftDots />

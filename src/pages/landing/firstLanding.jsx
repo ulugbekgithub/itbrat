@@ -22,9 +22,11 @@ import SwiperRezume from "../../components/swiperRezume";
 import { useDispatch, useSelector } from "react-redux";
 import { getProjectsCategory } from "../../app/reducers/projectsSlice";
 import { FaCheck } from "react-icons/fa";
+import { postFeedback } from "../../app/reducers/statusSlice";
 
 export default function FirstLanding() {
   const [openComponentCompany, setOpenComponentCompany] = useState(true);
+  const [feedback, setFeedback] = useState("");
   const { projectsCategory } = useSelector((state) => state.projects);
 
   const dispatch = useDispatch();
@@ -32,11 +34,20 @@ export default function FirstLanding() {
     dispatch(getProjectsCategory());
   }, [dispatch]);
 
+  const handleFeedback = () => {
+    console.log(feedback);
+    setFeedback("");
+
+    dispatch(postFeedback({ feedback }));
+  };
   return (
     <div>
       <Header />
       <div className="w-full min-h-[800px] flex justify-center items-center bg-photo bg-main-black">
-        <div className="w-full max-w-[1096px] h-full  flex flex-col justify-around">
+        <div
+          id="home"
+          className="w-full max-w-[1096px] h-full  flex flex-col justify-around md:mt-0 mt-32"
+        >
           <div className="md:mt-[-100px] mt-[-300px] md:p-0 p-10">
             <h1 className="w-full md:max-w-[1026px] max-w-[275px]  md:leading-[68px] leading-9 md:text-5xl text-xl font-bold text-main-white">
               НАХОДИТЕСЬ В ПОИСКЕ ИНТЕРЕСНОГО{" "}
@@ -55,7 +66,7 @@ export default function FirstLanding() {
                 НАЙТИ ПРОЕКТ
               </span>
             </button>
-            <button className="w-full max-w-[346px] h-[70px] bg-main-red text-main-black rounded box-shadow">
+            <button className="w-full max-w-[346px] h-[70px] bg-main-red text-main-black rounded box-shadow ">
               <span className="font-bold text-[clamp(16px,3vw,24px)]">
                 НАЙТИ КОМАНДУ
               </span>
@@ -108,8 +119,8 @@ export default function FirstLanding() {
         </div>
       </div>
 
-      <div className="w-full flex flex-col justify-center items-center bg-texture">
-        <h2 className="w-full max-w-[500px] min-h-[122px] text-[clamp(24px,4vw,48px)] font-bold text-main-white text-center">
+      <div className="w-full flex flex-col justify-center items-center bg-main-black">
+        <h2 className="w-full max-w-[500px] min-h-[122px] text-[clamp(24px,4vw,48px)] font-bold text-main-white text-center md:px-0 px-3">
           НАЙДИТЕ <span className="text-main-red">КОМАНДУ</span>
           <span className="text-main-red"> МЕЧТЫ</span> ЗДЕСЬ
         </h2>
@@ -123,9 +134,9 @@ export default function FirstLanding() {
               />
             </div>
             <div>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col">
                 <div className="flex gap-[35px]">
-                  <div className="w-full max-w-[188px] p-5 box-shadow">
+                  <div className="w-full max-w-[188px] p-5 card-shadow">
                     <span className="text-main-red text-[clamp(24px,3vw,48px)] font-extrabold">
                       500+
                     </span>
@@ -133,7 +144,7 @@ export default function FirstLanding() {
                       соискателей
                     </p>
                   </div>
-                  <div className="w-full max-w-[295px] min-h-[124px] p-5 box-shadow">
+                  <div className="w-full max-w-[295px] min-h-[124px] p-5 card-shadow">
                     <span className="text-main-red text-[clamp(24px,3vw,48px)] font-extrabold">
                       300+
                     </span>
@@ -143,7 +154,7 @@ export default function FirstLanding() {
                   </div>
                 </div>
                 <div className="flex gap-[35px] mt-[35px]">
-                  <div className="w-full max-w-[159px] p-5 box-shadow">
+                  <div className="w-full max-w-[159px] p-5 card-shadow">
                     <span className="text-main-red text-[clamp(24px,3vw,48px)] font-extrabold">
                       50+
                     </span>
@@ -151,7 +162,7 @@ export default function FirstLanding() {
                       категорий
                     </p>
                   </div>
-                  <div className="w-full max-w-[194px] p-5 box-shadow">
+                  <div className="w-full max-w-[194px] p-5 card-shadow">
                     <span className="text-main-red text-[clamp(24px,3vw,48px)] font-extrabold">
                       1000+
                     </span>
@@ -192,7 +203,7 @@ export default function FirstLanding() {
               <div className="w-full max-w-[295px] h-[39px] flex md:hidden items-center justify-between bg-[#424242] rounded p-3">
                 <button
                   onClick={() => setOpenComponentCompany(true)}
-                  className={`w-full max-w-[141px] min-h-[31px] text-main-white rounded ${
+                  className={`w-full max-w-[141px] min-h-[31px] flex justify-center items-center text-main-white rounded ${
                     openComponentCompany ? "bg-[#560303]" : ""
                   }`}
                 >
@@ -200,7 +211,7 @@ export default function FirstLanding() {
                 </button>
                 <button
                   onClick={() => setOpenComponentCompany(false)}
-                  className={`w-full max-w-[141px] min-h-[31px] text-main-white rounded ${
+                  className={`w-full max-w-[141px] min-h-[31px] flex justify-center items-center text-main-white rounded ${
                     !openComponentCompany ? "bg-[#560303]" : ""
                   }`}
                 >
@@ -222,20 +233,20 @@ export default function FirstLanding() {
                 <div className="relative w-full max-w-[491px] min-h-[600px] flex flex-col justify-between items-center pt-5 text-center text-main-white itbrat-box hover:bg-white hover:cursor-pointer hover:text-main-black">
                   <span className="text-3xl font-semibold">Для компаний</span>
                   <ul className="absolute right-3 top-32 flex flex-col whitespace-nowrap gap-3 opacity-0 invisible transition-opacity duration-300 ease-in-out hover-ul">
-                    <li className="flex gap-2">
+                    <li className="flex gap-2 items-center">
                       <FaCheck size={20} color="red" />
                       <span className="text-main-black text-[16px] font-light text-start">
                         быстрый поиск <br /> профессианальной команды <br /> или
                         специалиста
                       </span>
                     </li>
-                    <li className="flex gap-2">
+                    <li className="flex gap-2 items-center">
                       <FaCheck size={20} color="red" />
                       <span className="text-main-black text-[16px] font-light">
                         удобный формат связи и работы
                       </span>
                     </li>
-                    <li className="flex gap-2">
+                    <li className="flex gap-2 items-center">
                       <FaCheck size={20} color="red" />
                       <span className="text-main-black text-[16px] font-light">
                         гарантия результата
@@ -255,26 +266,29 @@ export default function FirstLanding() {
                   <span className="text-3xl font-semibold">
                     Для фрилансеров
                   </span>
-                  <ul className="absolute lg:left-48 left-24 top-32 w-full flex flex-col whitespace-nowrap gap-3 px-12 opacity-0 invisible transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:visible">
-                    <li className="flex gap-2">
-                      <FaCheck size={20} color="red" />
-                      <span className="text-[16px] font-light text-start">
-                        регулярно обновляющаяся <br /> база проектов
-                      </span>
-                    </li>
-                    <li className="flex gap-2">
-                      <FaCheck size={20} color="red" />
-                      <span className="text-[16px] font-light text-start">
-                        возможность создавать <br /> команду
-                      </span>
-                    </li>
-                    <li className="flex gap-2">
-                      <FaCheck size={20} color="red" />
-                      <span className="text-[16px] font-light text-start">
-                        удобная платформа для <br /> ведения проектов
-                      </span>
-                    </li>
-                  </ul>
+                  <div className="w-full relative ">
+                    <ul className="absolute right-5 top-10  flex flex-col gap-3 px-4 opacity-0 invisible transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:visible">
+                      <li className="flex gap-2 items-center">
+                        <FaCheck size={20} color="red" />
+                        <span className="text-[16px] font-light text-start">
+                          регулярно обновляющаяся <br /> база проектов
+                        </span>
+                      </li>
+                      <li className="flex gap-2 items-center">
+                        <FaCheck size={20} color="red" />
+                        <span className="text-[16px] font-light text-start">
+                          возможность создавать <br /> команду
+                        </span>
+                      </li>
+                      <li className="flex gap-2 items-center">
+                        <FaCheck size={20} color="red" />
+                        <span className="text-[16px] font-light text-start">
+                          удобная платформа для <br /> ведения проектов
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+
                   <div className="w-full max-w-[373px] h-[467px] pt-5">
                     <img
                       className="mt-10 transition-transform duration-300 ease-in-out transform girlImg"
@@ -366,8 +380,13 @@ export default function FirstLanding() {
                   className="w-full max-w-[658px] h-[54px] text-second-color bg-[#343434] rounded-md p-3"
                   type="text"
                   placeholder="Введите Email"
+                  value={feedback}
+                  onChange={(e) => setFeedback(e.target.value)}
                 />
-                <button className="w-full  md:max-w-[277px] h-[54px] text-main-white text-xl font-bold bg-main-red rounded-md box-shadow">
+                <button
+                  onClick={handleFeedback}
+                  className="w-full  md:max-w-[277px] h-[54px] text-main-white text-xl font-bold bg-main-red rounded-md box-shadow"
+                >
                   Подписаться
                 </button>
               </div>

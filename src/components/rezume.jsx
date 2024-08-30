@@ -91,18 +91,18 @@ export default function Rezume() {
               <div>
                 <div className="w-full flex flex-col xl:flex-row xl:gap-[80px] gap-[10px]">
                   <div className="flex items-start gap-3">
-                    <div className="flex items-center justify-center w-[100px] h-[100px] border-4 border-[#680202] rounded-full">
+                    <div className="flex items-center justify-center w-[85px] h-[85px] border-4 border-[#680202] rounded-full">
                       <img
-                        className="w-[90px] h-[90px] rounded-full object-cover"
+                        className="w-[75px] h-[75px] rounded-full object-cover"
                         src={selectedResume?.image}
                         alt="profile"
                       />
                     </div>
                     <div>
-                      <h2 className="text-[#5B0303] text-[clamp(16px,3vw,24px)] font-semibold]">
+                      <h2 className="text-[#5B0303] text-[clamp(16px,3vw,24px)] font-semibold">
                         {selectedResume?.owner.first_name}
                       </h2>
-                      <span className="text-main-black text-[clamp(12px,3vw,20px) font-semibold]">
+                      <span className="text-main-black text-[clamp(12px,3vw,20px)] font-semibold">
                         {selectedResume?.heading.name}
                       </span>
                     </div>

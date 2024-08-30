@@ -18,8 +18,7 @@ export default function Login() {
     dispatch(login({ username: userName, password })).then((action) => {
       if (action.payload) {
         localStorage.setItem("accessToken", action.payload);
-        navigate("/role");
-        toast.success("login success", {
+        toast.success("Спасибо! Вы успешно зарегистрированы", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -29,8 +28,11 @@ export default function Login() {
           progress: undefined,
           theme: "light",
         });
+        setTimeout(() => {
+          navigate("/role");
+        }, 1500);
       } else {
-        toast.error("This user is not available to the system", {
+        toast.error("Этот пользователь недоступен для системы", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -78,7 +80,7 @@ export default function Login() {
             required
           />
           <button
-            className="bg-main-red hover:bg-purple-900 text-white font-bold p-2 rounded w-[95%]"
+            className="bg-main-red text-white font-bold p-2 rounded w-[95%]"
             id="login"
             type="submit"
           >

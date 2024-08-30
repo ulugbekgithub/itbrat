@@ -15,7 +15,7 @@ export default function Header() {
       <div className="md:hidden block absolute top-24 w-full h-screen z-10 left-0 right-0 bg-main-black transition">
         <ul className="text-center text-xl p-20 text-main-white">
           <li className="cursor-pointer hover:text-main-red my-4 py-4">
-            ГЛАВНАЯ
+            <a href="#home"> ГЛАВНАЯ</a>
           </li>
           <li className="cursor-pointer hover:text-main-red my-4 py-4">
             О НАС
@@ -41,9 +41,9 @@ export default function Header() {
   );
 
   return (
-    <div className="w-full  h-[130px] flex justify-center items-start p-1  bg-main-black">
+    <div className="w-full  h-[130px] flex justify-center items-start p-1  bg-main-black fixed z-50">
       <div className="w-full max-w-[1196px] p-10  flex justify-between items-center">
-        <div className="w-[196px] h-[32px]">
+        <div className="md:w-[196px] w-[98px] h-[32px]">
           <Link to={"/"}>
             {" "}
             <img src={logo} alt="logo" />
@@ -73,7 +73,7 @@ export default function Header() {
 
       <div>{click && content}</div>
       <button
-        className="block md:hidden transition mt-10"
+        className="block md:hidden transition mt-8"
         onClick={handleClick}
       >
         {click ? (

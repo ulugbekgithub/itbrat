@@ -19,3 +19,7 @@ html::-webkit-scrollbar-thumb {
 .scrollbar-rezume-thin::-webkit-scrollbar {
   width: 0px;
 }
+
+html {
+  scroll-behavior: smooth;
+}

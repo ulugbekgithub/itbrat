@@ -67,88 +67,93 @@ export default function FavoriteResume() {
     <div className="px-5">
       <div className="">
         {isSelectedResume ? (
-          <div className=" w-full relative min-h-[233px] bg-[#8D8D8D] rounded-lg p-5">
-            <GrFormPreviousLink
-              onClick={handleBackToList}
-              className="absolute top-0 left-0 hover:text-main-red hover:scale-110 cursor-pointer"
-              size={30}
-            />
-            {selectedResume ? (
-              <div>
-                <div className="w-full flex flex-col xl:flex-row md:gap-[80px]">
-                  <div className="flex items-start gap-3">
-                    <div className="flex items-center justify-center w-[100px] h-[100px] border-4 border-[#680202] rounded-full">
-                      <img
-                        className="w-[90px] h-[90px] rounded-full object-cover"
-                        src={selectedResume?.image}
-                        alt="profile"
-                      />
+          <div>
+            <h1 className="text-main-white text-[clamp(20px,3vw,24px)] font-semibold px-3">
+              Резюме
+            </h1>
+            <div className=" w-full relative min-h-[233px] bg-[#8D8D8D] rounded-lg p-5">
+              <GrFormPreviousLink
+                onClick={handleBackToList}
+                className="absolute top-0 left-0 hover:text-main-red hover:scale-110 cursor-pointer"
+                size={30}
+              />
+              {selectedResume ? (
+                <div>
+                  <div className="w-full flex flex-col xl:flex-row xl:gap-[80px] gap-[10px]">
+                    <div className="flex items-start gap-3">
+                      <div className="flex items-center justify-center w-[85px] h-[85px] border-4 border-[#680202] rounded-full">
+                        <img
+                          className="w-[75px] h-[75px] rounded-full object-cover"
+                          src={selectedResume?.image}
+                          alt="profile"
+                        />
+                      </div>
+                      <div>
+                        <h2 className="text-[#5B0303] text-[clamp(16px,3vw,24px)] font-semibold">
+                          {selectedResume?.owner.first_name}
+                        </h2>
+                        <span className="text-main-black text-[clamp(12px,3vw,20px)] font-semibold">
+                          {selectedResume?.heading.name}
+                        </span>
+                      </div>
                     </div>
                     <div>
-                      <h2 className="text-[#5B0303] text-[clamp(16px,3vw,24px)] font-semibold]">
-                        {selectedResume?.owner.first_name}
-                      </h2>
-                      <span className="text-main-black text-[clamp(12px,3vw,20px) font-semibold]">
-                        {selectedResume?.heading.name}
+                      <ul>
+                        <li>
+                          <span className="text-main-black text-[clamp(13px,3vw,20px)] font-semibold">
+                            Контактная информация: {selectedResume?.contact}
+                          </span>
+                        </li>
+                        <li>
+                          <span className="text-main-black text-[clamp(13px,3vw,20px)] font-semibold">
+                            Опыт работы: {selectedResume?.experience} лет
+                          </span>
+                        </li>
+                        <li>
+                          <span className="text-main-black text-[clamp(13px,3vw,20px)] font-semibold">
+                            Личные данные: {selectedResume?.description}
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="fw-full flex xl:flex-row flex-col justify-between ">
+                    <div>
+                      <h1 className="text-main-black text-[clamp(16px,3vw,24px)] font-bold">
+                        Навыки
+                      </h1>
+                      <span className="text-main-black text-[clamp(14px,3vw,16px)] font-light">
+                        Hard skills
+                        <div className="grid  grid-cols-2 gap-2 text-center">
+                          {text.map((item, idx) => (
+                            <div
+                              key={idx}
+                              className={`${idx % 2 === 0 && "bg-main-black"} ${
+                                idx % 2 === 1 && "bg-[#4A2020]"
+                              } p-1 px-3 rounded-xl font-semibold`}
+                            >
+                              <span className="text-main-white">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </span>
+                    </div>
+                    <div className="w-[63%] flex justify-start mt-6 md:mt-10">
+                      <span className="text-main-black text-[clamp(14px,3vw,16px)] font-light">
+                        Soft skills
+                        <div className="p-1 px-3 bg-[#4A2020] text-main-white rounded-xl font-semibold">
+                          {selectedResume?.soft_skills}
+                        </div>
                       </span>
                     </div>
                   </div>
-                  <div>
-                    <ul>
-                      <li>
-                        <span className="text-main-black text-[clamp(13px,3vw,20px)] font-semibold">
-                          Контактная информация: {selectedResume?.contact}
-                        </span>
-                      </li>
-                      <li>
-                        <span className="text-main-black text-[clamp(13px,3vw,20px)] font-semibold">
-                          Опыт работы: {selectedResume?.experience} лет
-                        </span>
-                      </li>
-                      <li>
-                        <span className="text-main-black text-[clamp(13px,3vw,20px)] font-semibold">
-                          Личные данные: {selectedResume?.description}
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
                 </div>
-                <div className="flex gap-[100px] md:gap-[215px]">
-                  <div>
-                    <h1 className="text-main-black text-[clamp(16px,3vw,24px)] font-bold">
-                      Навыки
-                    </h1>
-                    <span className="text-main-black text-[clamp(14px,3vw,16px)] font-light">
-                      Hard skills
-                      <div className="flex items-center gap-3">
-                        {text.map((item, idx) => (
-                          <div
-                            key={idx}
-                            className={`${idx % 2 === 0 && "bg-main-black"} ${
-                              idx % 2 === 1 && "bg-[#4A2020]"
-                            } p-1 rounded-md`}
-                          >
-                            <span className="text-main-white">{item}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </span>
-                  </div>
-                  <div className="mt-6 md:mt-10">
-                    <span className="text-main-black text-[clamp(14px,3vw,16px)] font-light">
-                      Soft skills
-                      <div className="p-1 bg-[#4A2020] text-main-white rounded-md">
-                        {selectedResume?.soft_skills}
-                      </div>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <p className="text-3xl text-center my-10 font-bold">
-                На данный момент резюме нет
-              </p>
-            )}
+              ) : (
+                <p className="text-3xl text-center my-10 font-bold">
+                  На данный момент резюме нет
+                </p>
+              )}
+            </div>
           </div>
         ) : (
           <div>

@@ -193,7 +193,7 @@ export default function Account() {
                 {...register("heading")}
               >
                 <option value="" className="text-md">
-                  выберите профессия
+                  выберите профессию
                 </option>
                 {headingResume?.map((item) => (
                   <option key={item.id} value={item.id} className="text-xs">
@@ -235,9 +235,9 @@ export default function Account() {
             <div>
               <div className="w-full flex flex-col xl:flex-row xl:gap-[80px] gap-[10px]">
                 <div className="flex items-start gap-3">
-                  <div className="flex items-center justify-center md:w-[100px] w-[70px] md:h-[100px] h-[70px] border-4 border-[#680202] rounded-full">
+                  <div className="flex items-center justify-center md:w-[85px] w-[70px] md:h-[85px] h-[70px] border-4 border-[#680202] rounded-full">
                     <img
-                      className="md:w-[90px] w-[60px] md:h-[90px] h-[60px] rounded-full object-cover"
+                      className="md:w-[75px] w-[60px] md:h-[75px] h-[60px] rounded-full object-cover"
                       src={currentResume[0]?.image}
                       alt="profile"
                     />

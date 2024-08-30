@@ -83,7 +83,7 @@ export default function Projects() {
                     backgroundImage: `url(${item.image})`,
                   }}
                 >
-                  <div className="w-full relative flex flex-col gap-10 p-5">
+                  <div className="w-full relative flex flex-col gap-10 p-5 ">
                     {/* <button className="absolute top-[-150px] right-[20px] flex items-center justify-center w-10 h-10 rounded-full bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
                     {item.favorite ? (
                       <IoMdHeart

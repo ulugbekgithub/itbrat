@@ -10,7 +10,6 @@ import {
   IoDocumentTextOutline,
   IoExitOutline,
   IoSearch,
-  IoSettingsOutline,
 } from "react-icons/io5";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { BsChatLeftDots } from "react-icons/bs";

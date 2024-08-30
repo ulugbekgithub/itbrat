@@ -3,48 +3,43 @@ import { Outlet } from "react-router-dom";
 import ChatList from "../pages/chats/chatList";
 
 export default function Chat() {
-  // 1. Add state for toggling between ChatList and ChatWindow
   const [showChatList, setShowChatList] = useState(true);
-  const [isMobile, setIsMobile] = useState(false); // Track if the screen is mobile size
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1280); // Initialize based on initial screen size
 
-  // 2. Use media query to detect screen width below 768px
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 1280) {
-        setIsMobile(true); // Set to mobile view
-        setShowChatList(true); // Show chat list by default on small screens
-      } else {
-        setIsMobile(false); // Set to desktop view
-        setShowChatList(true); // Show both on larger screens
+      const wasMobile = isMobile;
+      const currentIsMobile = window.innerWidth < 1280;
+
+      // If screen size has changed, update the state
+      if (currentIsMobile !== wasMobile) {
+        setIsMobile(currentIsMobile);
+        setShowChatList(true); // Reset to show chat list on resize
       }
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Set initial state based on screen size
-
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [isMobile]); // Dependency on isMobile state
 
-  // 3. Function to handle member click (to show chat window on mobile)
   const handleMemberClick = () => {
     if (isMobile) {
-      setShowChatList(false); // Hide chat list on small screens
+      setShowChatList(false);
     }
   };
 
-  // 4. Function to go back to chat list (on small screens)
   const handleBackClick = () => {
-    setShowChatList(true); // Show chat list again
+    setShowChatList(true);
   };
 
   return (
     <div className="flex h-screen bg-main-black text-white">
-      {/* ChatList is always visible on desktop; conditionally visible on mobile */}
+      {/* Show chat list on larger screens, or if it's toggled on mobile */}
       {showChatList && (
         <ChatList onMemberClick={handleMemberClick} />
       )}
 
-      {/* ChatWindow is hidden on mobile until a chat is clicked, always visible on desktop */}
+      {/* Show chat window on larger screens, or if chat list is hidden on mobile */}
       {(!isMobile || !showChatList) && (
         <div className="w-full h-full relative">
           {isMobile && (

@@ -19,11 +19,9 @@
   /* background-position: center; */
 }
 
-.box-shadow {
-  /* border: 2px solid red; */
+.card-shadow {
   border-radius: 5px;
-  box-shadow: 3px 3px 20px red;
-  text-shadow: 1px 1px 6px;
+  box-shadow: 10px 10px 20px rgba(255, 0, 0, 0.5); /* Red shadow with offsets to the right and bottom */
 }
 .itbrat-box {
   border-radius: 5px;

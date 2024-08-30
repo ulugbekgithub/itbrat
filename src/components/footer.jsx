@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <div className="w-full max-w-[1196px] flex flex-col-reverse items-center  justify-between md:flex-row  md:mt-[200px] mt-10 pb-12">
-       <div className="w-1/2 flex justify-between items-center">
+    <div className="w-full max-w-[1196px] flex flex-col-reverse items-center gap-[77px]  justify-between md:flex-row  md:mt-[200px] mt-10 pb-12">
+       <div className="md:w-1/2 w-full flex justify-between items-center">
        <div>
           <ul className="flex flex-col gap-2 p-5 text-[clamp(8px,3vw,14px)]">
             <li className="text-main-white">
               <h3>МЕНЮ</h3>
             </li>
-            <li className="text-second-color">Главная</li>
+            <li className="text-second-color"><a href="#home">Главная</a></li>
             <li className="text-second-color">О нас</li>
             <li className="text-second-color">Контакты</li>
             <li className="text-second-color">FAQ</li>
@@ -32,7 +32,7 @@ export default function Footer() {
           </ul>
         </div>
        </div>
-      <div className="flex justify-start">
+      <div className="w-[90%] md:w-[20%] flex justify-start">
         <ul className="flex flex-col items-start text-[clamp(8px,3vw,14px)]">
           <li className="md:w-[196px] w-[98px] md:h-[32px] h-[16px]">
             <Link to={"/"}>

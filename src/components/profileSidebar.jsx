@@ -19,7 +19,9 @@ export default function ProfileSidebar() {
   const { currentResume, selectedResume } = useSelector(
     (state) => state.resumes
   );
+
   console.log(selectedResume);
+  
 
   useEffect(() => {
     dispatch(getCurrentUserResume());
