@@ -63,6 +63,9 @@ export default function FavoriteResume() {
 
   // console.log(selectedResume);
 
+  console.log(setFavoriteResume);
+  
+
   return (
     <div className="px-5">
       <div className="">
@@ -179,7 +182,7 @@ export default function FavoriteResume() {
                   >
                     <button className="absolute top-4 right-[20px] flex items-center justify-center w-10 h-10 rounded-full bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
                       <IoMdHeart
-                        onClick={() => handleDeleteLike(item.id)}
+                        onClick={() => handleDeleteLike(item.resume.id)}
                         className=" cursor-pointer hover:scale-110"
                         color="red"
                         size={30}

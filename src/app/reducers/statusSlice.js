@@ -63,7 +63,7 @@ const statusSlice = createSlice({
       })
       .addCase(updateUserStatus.fulfilled, (state, action) => {
         state.loading = false;
-        state.status[action.meta.arg.userId] = action.meta.arg.status;
+        state.status[action.meta.arg.userId] = action.payload.status;
       })
       .addCase(updateUserStatus.rejected, (state, action) => {
         state.loading = false;

@@ -119,13 +119,13 @@ export default function FirstLanding() {
         </div>
       </div>
 
-      <div className="w-full flex flex-col justify-center items-center bg-main-black">
+      <div className="w-full  flex flex-col justify-center items-center bg-main-black">
         <h2 className="w-full max-w-[500px] min-h-[122px] text-[clamp(24px,4vw,48px)] font-bold text-main-white text-center md:px-0 px-3">
           НАЙДИТЕ <span className="text-main-red">КОМАНДУ</span>
           <span className="text-main-red"> МЕЧТЫ</span> ЗДЕСЬ
         </h2>
         <div className="w-full max-w-[1196px] flex flex-col items-center justify-center md:p-5 p-5">
-          <div className="flex flex-col-reverse md:flex-row md:p-5">
+          <section className="flex flex-col-reverse  md:flex-row md:p-5">
             <div className="flex items-end">
               <img
                 className="md:w-full md:h-full h-[400px]  object-cover object-left "
@@ -172,7 +172,7 @@ export default function FirstLanding() {
                   </div>
                 </div>
 
-                <p className="text-second-color text-[clamp(12px,3vw,16px)] font-light w-full  min-h-[120px] mt-[35px]">
+                <p className="text-second-color text-[clamp(12px,3vw,16px)] font-light w-full min-w-[550px]  min-h-[120px] mt-[35px]">
                   Найти единомышленников-экспертов просто! ITBRAT - надежная
                   платформа для поиска профессионалов и совместной реализации
                   задуманных проектов разных направлений. Наша система
@@ -181,7 +181,7 @@ export default function FirstLanding() {
                   партнера для воплощения своих идей.
                 </p>
 
-                <p className="text-second-color text-[clamp(12px,3vw,16px)] font-light w-full  min-h-[100px] mt-[29px]">
+                <p className="text-second-color text-[clamp(12px,3vw,16px)] font-light mnin-w-[550px]  min-h-[100px] mt-[29px]">
                   Ищете другие предложения? <br /> Вы также можете ознакомиться
                   с нашим сервисом{" "}
                   <span className="text-main-red">«ITStock»</span> <br />{" "}
@@ -191,8 +191,8 @@ export default function FirstLanding() {
                 </p>
               </div>
             </div>
-          </div>
-          <div className="w-full md:min-h-[890px] p-5 flex flex-col justify-center items-center">
+          </section>
+          <section className="w-full md:min-h-[890px] p-5 flex flex-col justify-center items-center">
             <h3 className="text-main-white text-center text-[clamp(24px,3vw,48px)] font-bold">
               ПРЕИМУЩЕСТВА{" "}
               <span className="text-main-red text-[clamp(24px,3vw,48px)]">
@@ -302,7 +302,7 @@ export default function FirstLanding() {
             <button className="w-full max-w-[283px] h-[62px] bg-main-red text-main-white md:text-2xl text-xs font-bold mt-12  box-shadow md:block hidden">
               Присоединиться
             </button>
-          </div>
+          </section>
 
           <h1 className="text-main-white text-[clamp(24px,3vw,48px)] text-center font-bold">
             ПОСЛЕДНИЕ РАЗМЕЩЕННЫЕ <span className="text-main-red">ПРОЕКТЫ</span>

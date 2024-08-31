@@ -30,16 +30,16 @@ export default function StatusComponent({ userId }) {
     setSelectedIndex(index === selectedIndex ? null : index);
   };
 
-  const handleStatusChange = (index, statusValue) => {
-    setSelectedStatus(statusValue); // Update UI immediately
+  const handleStatusChange = (statusValue) => {
+    setSelectedStatus(statusValue); // UI ni darhol yangilash
 
-    // Persist status in localStorage
+    // Local storageda saqlash
     localStorage.setItem(`userStatus-${userId}`, JSON.stringify(statusValue));
 
-    // Update Redux state
+    // Redux holatini yangilash
     dispatch(setLocalStatus({ userId, status: statusValue }));
 
-    // Make API call to update status in the backend
+    // API'ga so'rov yuborish
     dispatch(updateUserStatus({ userId, status: statusValue }));
   };
 
@@ -90,17 +90,19 @@ export default function StatusComponent({ userId }) {
                 <div className="mt-4">
                   {item.statuses.map((status) => (
                     <label
+                      name="status"
                       key={status.value}
-                      className="flex items-center mb-2 text-main-red"
+                      className="flex items-center mb-2 text-main-red cursor-pointer"
                     >
                       <input
                         type="radio"
-                        name={`status-${index}`}
+                        name="status"
                         value={status.value}
                         checked={selectedStatus === status.value}
-                        onChange={() => handleStatusChange(index, status.value)}
-                        className="mr-2"
+                        onChange={() => handleStatusChange(status.value)}
+                        className="mr-2 cursor-pointer"
                       />
+
                       {status.label}
                     </label>
                   ))}
