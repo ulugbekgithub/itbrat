@@ -63,8 +63,10 @@ const statusSlice = createSlice({
       })
       .addCase(updateUserStatus.fulfilled, (state, action) => {
         state.loading = false;
-        state.status[action.meta.arg.userId] = action.payload.status;
+        const { userId, status } = action.meta.arg;
+        state.status[userId] = status; // Bu qatorni albatta tekshirib ko'ring
       })
+
       .addCase(updateUserStatus.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
@@ -74,7 +76,7 @@ const statusSlice = createSlice({
       })
       .addCase(postFeedback.fulfilled, (state, action) => {
         state.loading = false;
-       state.feedback = action.payload
+        state.feedback = action.payload;
       })
       .addCase(postFeedback.rejected, (state, action) => {
         state.loading = false;

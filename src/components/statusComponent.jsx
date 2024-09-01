@@ -12,7 +12,6 @@ export default function StatusComponent({ userId }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState(storedStatus || null);
 
-  // Retrieve status from localStorage on mount
   useEffect(() => {
     const savedStatus = localStorage.getItem(`userStatus-${userId}`);
     if (savedStatus) {
@@ -20,7 +19,7 @@ export default function StatusComponent({ userId }) {
     } else if (storedStatus) {
       setSelectedStatus(storedStatus);
     }
-  }, [userId, storedStatus]);
+  }, [storedStatus]);
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -31,16 +30,11 @@ export default function StatusComponent({ userId }) {
   };
 
   const handleStatusChange = (statusValue) => {
-    setSelectedStatus(statusValue); // UI ni darhol yangilash
-
-    // Local storageda saqlash
+    setSelectedStatus(statusValue);
     localStorage.setItem(`userStatus-${userId}`, JSON.stringify(statusValue));
-
-    // Redux holatini yangilash
     dispatch(setLocalStatus({ userId, status: statusValue }));
-
-    // API'ga so'rov yuborish
     dispatch(updateUserStatus({ userId, status: statusValue }));
+    setSelectedIndex(null);
   };
 
   const accordionData = [
@@ -102,7 +96,6 @@ export default function StatusComponent({ userId }) {
                         onChange={() => handleStatusChange(status.value)}
                         className="mr-2 cursor-pointer"
                       />
-
                       {status.label}
                     </label>
                   ))}
