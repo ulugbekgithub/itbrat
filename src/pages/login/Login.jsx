@@ -50,10 +50,10 @@ export default function Login() {
 
   return (
     <div>
-      <div className="w-screen h-screen flex justify-center items-center relative bg-main-black">
+      <div className="relative flex items-center justify-center w-screen h-screen bg-main-black">
         <Link to={"/"}>
           <RiCloseLargeLine
-            className="absolute top-5 right-5 cursor-pointer"
+            className="absolute cursor-pointer top-5 right-5"
             color="red"
             size={30}
           />

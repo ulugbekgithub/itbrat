@@ -60,7 +60,7 @@ const DesktopSwiper = () => {
             <SwiperSlide key={uuidv4()}>
               <div className="w-full max-w-[298px] min-h-[335px] rounded-lg flex flex-col justify-end gap-6 mb-20 group relative shadow-lg text-white px-6 py-8 h-full overflow-hidden cursor-pointer ">
                 <div
-                  className="absolute inset-0 bg-cover bg-center "
+                  className="absolute inset-0 bg-center bg-cover "
                   style={{
                     backgroundImage: `url(${item.backgroundImage})`,
                   }}
@@ -69,18 +69,18 @@ const DesktopSwiper = () => {
                 <div className="relative flex flex-col gap-10">
                   <div className="absolute top-[-230px] right-[5px] flex items-center gap-4">
                     <div>
-                      <button className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
-                        <FaEye className=" cursor-pointer hover:scale-110" />
+                      <button className="flex items-center justify-center w-10 h-10 bg-gray-500 rounded-full bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
+                        <FaEye className="cursor-pointer  hover:scale-110" />
                       </button>
                       <span className="text-second-color text-[13px]">
                         {item.view}к
                       </span>
                     </div>
                     <div>
-                      <button className=" flex items-center justify-center w-10 h-10 rounded-full bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
+                      <button className="flex items-center justify-center w-10 h-10 bg-gray-500 rounded-full  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
                         {item.favorite ? (
                           <IoMdHeart
-                            className=" cursor-pointer hover:scale-110"
+                            className="cursor-pointer  hover:scale-110"
                             color="red"
                             size={30}
                           />
@@ -97,15 +97,15 @@ const DesktopSwiper = () => {
                       </span>
                     </div>
                   </div>
-                  <h1 className="flex justify-start  font-semibold  text-start h-10">
+                  <h1 className="flex justify-start h-10 font-semibold text-start">
                     {item.title}
                   </h1>
-                  <div className="w-full flex items-end justify-between">
+                  <div className="flex items-end justify-between w-full">
                     <p className=" text-second-color text-start">
                       от <br />
                       {item.price} р.
                     </p>
-                    <a className="text-main-red underline" href="">
+                    <a className="underline text-main-red" href="">
                       Подробнее
                     </a>
                   </div>

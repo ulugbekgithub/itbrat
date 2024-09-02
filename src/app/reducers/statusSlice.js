@@ -30,11 +30,17 @@ export const postFeedback = createAsyncThunk(
   "status/postFeedback",
   async (email, thunkAPI) => {
     try {
-      const response = await axios.post(`${baseURL}/feed_back/`, email, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      const response = await axios.post(
+        `${baseURL}/subscribe/`,
+        {
+          email: email,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
