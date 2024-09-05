@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SwiperCore from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination, Navigation } from "swiper/modules";
@@ -14,10 +14,18 @@ const DesktopSwiper = () => {
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
+  const [favorites, setFavorites] = useState({});
+
+  useEffect(() => {
+    const initialFavorites = ServiceData.reduce((acc, item) => {
+      acc[item.id] = item.favorite || false;
+      return acc;
+    }, {});
+    setFavorites(initialFavorites);
+  }, []);
 
   const handleSwiper = (swiper) => {
     setSwiperInstance(swiper);
-    // Update button states initially
     updateButtonStates(swiper);
   };
 
@@ -41,6 +49,13 @@ const DesktopSwiper = () => {
     }
   };
 
+  const toggleFavorite = (itemId) => {
+    setFavorites(prev => ({
+      ...prev,
+      [itemId]: !prev[itemId]
+    }));
+  };
+
   return (
     <div className="w-full">
       <div className="flex items-center justify-center flex-col h-[600px] text-main-white">
@@ -57,7 +72,7 @@ const DesktopSwiper = () => {
           className="w-full"
         >
           {ServiceData.map((item) => (
-            <SwiperSlide key={uuidv4()}>
+            <SwiperSlide key={item.id || uuidv4()}>
               <div className="w-full max-w-[298px] min-h-[335px] rounded-lg flex flex-col justify-end gap-6 mb-20 group relative shadow-lg text-white px-6 py-8 h-full overflow-hidden cursor-pointer ">
                 <div
                   className="absolute inset-0 bg-center bg-cover "
@@ -70,17 +85,20 @@ const DesktopSwiper = () => {
                   <div className="absolute top-[-230px] right-[5px] flex items-center gap-4">
                     <div>
                       <button className="flex items-center justify-center w-10 h-10 bg-gray-500 rounded-full bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
-                        <FaEye className="cursor-pointer  hover:scale-110" />
+                        <FaEye className="cursor-pointer hover:scale-110" />
                       </button>
                       <span className="text-second-color text-[13px]">
                         {item.view}к
                       </span>
                     </div>
                     <div>
-                      <button className="flex items-center justify-center w-10 h-10 bg-gray-500 rounded-full  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40">
-                        {item.favorite ? (
+                      <button 
+                        onClick={() => toggleFavorite(item.id)} 
+                        className="flex items-center justify-center w-10 h-10 bg-gray-500 rounded-full bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40"
+                      >
+                        {favorites[item.id] ? (
                           <IoMdHeart
-                            className="cursor-pointer  hover:scale-110"
+                            className="cursor-pointer hover:scale-110"
                             color="red"
                             size={30}
                           />

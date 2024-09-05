@@ -24,11 +24,15 @@ import { getProjectsCategory } from "../../app/reducers/projectsSlice";
 import { FaCheck } from "react-icons/fa";
 import { postFeedback } from "../../app/reducers/statusSlice";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import Faq from "../../components/faq";
 
 export default function FirstLanding() {
   const [openComponentCompany, setOpenComponentCompany] = useState(true);
   const [feedback, setFeedback] = useState("");
   const { projectsCategory } = useSelector((state) => state.projects);
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -51,9 +55,31 @@ export default function FirstLanding() {
       theme: "light",
     });
   };
+
+  const handleSearchProject = () => {
+    if (localStorage.getItem("accessToken")) {
+      navigate("/profile");
+    } else {
+      navigate("/sign-up");
+    }
+  };
+  const handleSearchTeam = () => {
+    if (localStorage.getItem("accessToken")) {
+      navigate("/profile");
+    } else {
+      navigate("/sign-up");
+    }
+  };
+  const handleCategory = () => {
+    if (localStorage.getItem("accessToken")) {
+      navigate("/profile");
+    } else {
+      navigate("/sign-up");
+    }
+  };
   return (
     <div>
-       <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -84,12 +110,18 @@ export default function FirstLanding() {
           </div>
 
           <div className="flex flex-col gap-[31px] md:mx-0 mx-20  md:mt-[-350px] mt-[-500px]">
-            <button className="w-full max-w-[346px] h-[70px]  text-main-white border-[3px] border-solid border-main-red  bg-gray-7800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30">
+            <button
+              onClick={handleSearchProject}
+              className="w-full max-w-[346px] h-[70px]  text-main-white border-[3px] border-solid border-main-red  bg-gray-7800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30"
+            >
               <span className="font-bold text-[clamp(16px,3vw,24px)]">
                 НАЙТИ ПРОЕКТ
               </span>
             </button>
-            <button className="w-full max-w-[346px] h-[70px] bg-main-red text-main-black rounded box-shadow ">
+            <button
+              onClick={handleSearchTeam}
+              className="w-full max-w-[346px] h-[70px] bg-main-red text-main-black rounded box-shadow "
+            >
               <span className="font-bold text-[clamp(16px,3vw,24px)]">
                 НАЙТИ КОМАНДУ
               </span>
@@ -148,7 +180,10 @@ export default function FirstLanding() {
           <span className="text-main-red"> МЕЧТЫ</span> ЗДЕСЬ
         </h2>
         <div className="w-full max-w-[1196px] flex flex-col items-center justify-center md:p-5 p-5">
-          <section className="flex flex-col-reverse md:flex-row md:p-5">
+          <section
+            id="about"
+            className="flex flex-col-reverse md:flex-row md:p-5"
+          >
             <div className="flex items-end">
               <img
                 className="md:w-full md:h-full h-[400px]  object-cover object-left "
@@ -350,26 +385,31 @@ export default function FirstLanding() {
             </p>
           </div>
 
-          <div className="w-full h-[500px] grid grid-cols-2 md:grid-cols-4 gap-[44px] mt-[58px] p-5">
-            {projectsCategory.map((item) => (
-              <div
-                key={item.id}
-                className="bg-center bg-cover direction-box-shadow"
-                style={{
-                  backgroundImage: `url(${item.logo})`,
-                }}
-              >
-                <div className="flex items-center justify-center w-full h-full bg-gray-900 rounded-md bg-clip-padding backdrop-filter bg-opacity-40">
-                  <h4 className="text-main-white text-[clamp(12px,3vw,24px)] w-[170px] h-[62px] font-bold text-center flex justify-center items-center">
-                    {item.name}
-                  </h4>
+          <div
+            id="services"
+            className="flex flex-col items-center justify-center w-full h-screen"
+          >
+            <div className="w-full h-[500px] grid grid-cols-2 md:grid-cols-4 gap-[44px] mt-[58px] p-5">
+              {projectsCategory.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-center bg-cover direction-box-shadow"
+                  style={{
+                    backgroundImage: `url(${item.logo})`,
+                  }}
+                >
+                  <div className="flex items-center justify-center w-full h-full bg-gray-900 rounded-md bg-clip-padding backdrop-filter bg-opacity-40">
+                    <h4 className="text-main-white text-[clamp(12px,3vw,24px)] w-[170px] h-[62px] font-bold text-center flex justify-center items-center">
+                      {item.name}
+                    </h4>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <button onClick={handleCategory} className="w-full md:max-w-[283px] max-w-[184px] md:h-[62px] h-[41px] rounded-md bg-main-red text-main-white text-[clamp(12px,3vw,24px)] font-bold box-shadow">
+              Больше категорий
+            </button>
           </div>
-          <button className="w-full md:max-w-[283px] max-w-[184px] md:h-[62px] h-[41px] rounded-md bg-main-red text-main-white text-[clamp(12px,3vw,24px)] font-bold box-shadow">
-            Больше категорий
-          </button>
 
           <div className="flex flex-col items-center justify-between w-full py-20 md:flex-row">
             <div className="w-full">
@@ -387,9 +427,14 @@ export default function FirstLanding() {
               <SwiperRezume />
             </div>
           </div>
+          
+          <Faq />
 
           <div className="w-full h-[567px] ">
-            <div className="w-full max-w-[1128px] min-h-[320px] p-5 bg-[#101010] flex flex-col justify-around rounded-xl mt-[50px]">
+            <div
+              id="contacts"
+              className="w-full max-w-[1128px] min-h-[320px] p-5 bg-[#101010] flex flex-col justify-around rounded-xl mt-[50px]"
+            >
               <div className="text-center">
                 <h1 className="text-2xl font-bold text-main-white md:text-5xl">
                   БОЛЬШЕ ИНТЕРЕСНЫХ ПРОЕКТОВ

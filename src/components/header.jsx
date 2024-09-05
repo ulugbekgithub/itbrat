@@ -12,19 +12,21 @@ export default function Header() {
 
   const content = (
     <>
-      <div className="md:hidden block absolute top-24 w-full h-screen z-10 left-0 right-0 bg-main-black transition">
-        <ul className="text-center text-xl p-20 text-main-white">
-          <li className="cursor-pointer hover:text-main-red my-4 py-4">
+      <div className="absolute left-0 right-0 z-10 block w-full h-screen transition md:hidden top-24 bg-main-black">
+        <ul className="p-20 text-xl text-center text-main-white">
+          <li className="py-4 my-4 cursor-pointer hover:text-main-red">
             <a href="#home"> ГЛАВНАЯ</a>
           </li>
-          <li className="cursor-pointer hover:text-main-red my-4 py-4">
-            О НАС
+          <li className="py-4 my-4 cursor-pointer hover:text-main-red">
+            <a href="#about">О НАС</a>
           </li>
-          <li className="cursor-pointer hover:text-main-red my-4 py-4">
-            КОНТАКТЫ
+          <li className="py-4 my-4 cursor-pointer hover:text-main-red">
+            <a href="#contacts">КОНТАКТЫ</a>
           </li>
-          <li className="cursor-pointer hover:text-main-red my-4 py-4">FAQ</li>
-          <li className="flex items-center justify-center gap-2 my-4 py-4">
+          <li className="py-4 my-4 cursor-pointer hover:text-main-red">
+            <a href="#faq">FAQ</a>
+          </li>
+          <li className="flex items-center justify-center gap-2 py-4 my-4">
             <Link to={"/sign-in"}>
               <span className="cursor-pointer hover:text-main-red">Вход</span>
             </Link>
@@ -51,9 +53,15 @@ export default function Header() {
         </div>
         <div>
           <ul className="md:flex gap-[60px] text-main-white lg:text-base text-xs hidden">
-            <li className="cursor-pointer hover:text-main-red">ГЛАВНАЯ</li>
-            <li className="cursor-pointer hover:text-main-red">О НАС</li>
-            <li className="cursor-pointer hover:text-main-red">КОНТАКТЫ</li>
+            <li className="cursor-pointer hover:text-main-red">
+              <a href="#home">ГЛАВНАЯ</a>
+            </li>
+            <li className="cursor-pointer hover:text-main-red">
+              <a href="#about">О НАС</a>
+            </li>
+            <li className="cursor-pointer hover:text-main-red">
+              <a href="#contacts">КОНТАКТЫ</a>
+            </li>
             <li className="cursor-pointer hover:text-main-red">FAQ</li>
           </ul>
         </div>
@@ -72,10 +80,7 @@ export default function Header() {
       </div>
 
       <div>{click && content}</div>
-      <button
-        className="block md:hidden transition mt-8"
-        onClick={handleClick}
-      >
+      <button className="block mt-8 transition md:hidden" onClick={handleClick}>
         {click ? (
           <RiCloseLargeLine color="white" size={30} />
         ) : (

@@ -16,7 +16,8 @@ import RoleSelection from "./pages/roll/roleSelection";
 import Settings from "./components/settings";
 import ChatWindow from "./pages/chats/chatWindow";
 import FavoriteResume from "./components/favoriteResume";
-
+import UserAgreement from "./pages/userAgreement/userAgreement";
+import RulesOfTheSite from "./pages/rules/rulesOfTheSite";
 function App() {
   return (
     <>
@@ -25,6 +26,8 @@ function App() {
         <Route path="/notFound" element={<NotFound />} />
         <Route path="/sign-in" element={<Login />} />
         <Route path="/sign-up" element={<Register />} />
+        <Route path="/user-agreement" element={<UserAgreement />} />
+        <Route path="/rules-of-the-site" element={<RulesOfTheSite />} />
         <Route path="/role" element={<RoleSelection />} />
         <Route path="/profile" element={<Profile />}>
           <Route
